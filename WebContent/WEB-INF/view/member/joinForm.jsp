@@ -21,7 +21,7 @@
 			<input type="text" name="name" value="" ><br>
 			주민번호<br>
 			<input type="text" name="ssn" value="" ><br>
-			<input type="hidden" name="action" value="move" />
+			<input type="hidden" name="action" value="join" />
 			<input type ="hidden" name="page" value="joinResult" />
 			<input type="submit" value="제출">
 		</form><br>

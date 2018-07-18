@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="resoures/css/style.css" />
 </head>
 <body>
-<h3> 현재회원수 :  <makr> resoures </makr> </h3>
+<h3> 현재회원수 :  <makr> 나중에입력해 </makr> </h3>
 	<table class="margin-auto">
 		<tr class="height-150">
 			<th colspan="2">
@@ -33,11 +33,11 @@
 				<li><a href="<%= ctx %>/member.do?action=move&page=userLoginForm">사용자로그인</a></li>
 				<li><a href="<%= ctx %>/member/admin_login.do">관리자로그인</a></li>
 				<li><a href="<%= ctx %>/member.do?action=move&page=joinForm">회원가입</a> </li>
-				<li><a href="<%= ctx %>/member/updateForm.do">비밀번호바꾸기</a></li>
-				<li><a href="<%= ctx %>/member/deleteForm.do">회원탈퇴</a></li>
-				<li><a href="<%= ctx %>/member/memberlist.do">회원목록</a></li>
-				<li><a href="<%= ctx %>/member/searchTeamForm.do"> 팀이름검색 </a></li>
-					
+				<li><a href="<%= ctx %>/member.do?action=move&page=updateForm">비밀번호바꾸기</a></li>
+				<li><a href="<%= ctx %>/member.do?action=move&page=deleteForm">회원탈퇴</a></li>
+				<li><a href="<%= ctx %>/member.do?action=move&page=memberlist">회원목록</a></li>
+				<li><a href="<%= ctx %>/member.do?action=move&page=searchTeamForm"> 팀이름검색 </a></li>
+				<li><a href="<%= ctx %>/member.do?action=memberCount"> 카운트 </a></li>
 			</ul>			
 			</td>
 		</tr>

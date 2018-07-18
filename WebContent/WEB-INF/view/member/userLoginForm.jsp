@@ -17,7 +17,7 @@
 			<input type="text" name="userid" value="ID입력"><br>
 			Pass <br>
 			<input type="text" name="password" value="비번입력" ><br>
-			<input type="hidden" name="action" value="move" />
+			<input type="hidden" name="action" value="login" />
 			<input type ="hidden" name="page" value="userLoginResult" />
 			<input type="submit" value="제출">
 		</form><br>

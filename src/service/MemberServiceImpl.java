@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void delteMember(MemberBean member) {	
+	public void deleteMember(MemberBean member) {	
 		MemberDAOImpl.getInstance().dropMember(member);	
 		System.out.println("deleteS : " + member.toString());
 		
@@ -49,6 +49,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public boolean loginB(MemberBean bean) {
+		System.out.println("service : " + bean.getMemId());
 		return (MemberDAOImpl.getInstance().login(bean)!=null);
 	}
 	@Override

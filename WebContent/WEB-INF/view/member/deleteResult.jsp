@@ -8,11 +8,12 @@
 	<title>deleteResult</title>
 </head>
 <body>
-	<% MemberBean mem = new MemberBean(); 
-	mem.setMemId(request.getParameter("userId"));
-	mem.setPassword(request.getParameter("Pass"));
-	MemberServiceImpl.getInstance().delteMember(mem);
-%>
+	<%
+		MemberBean mem = new MemberBean(); 
+		mem.setMemId(request.getParameter("userId"));
+		mem.setPassword(request.getParameter("Pass"));
+		MemberServiceImpl.getInstance().deleteMember(mem);
+	%>
 	<a href="../home/userLoginForm.jsp">로그인하러가기</a>
 </body>
 </html>

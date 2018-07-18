@@ -2,7 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "domain.*" %>
-
+  <%
+	String ctx = application.getContextPath();
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,28 +14,13 @@
 	<title>memberList</title>
 </head>
 <body>
-	<%
-	List<MemberBean> lst = MemberServiceImpl
-	.getInstance()
-	.list();
-
-%>
+<a href="<%= ctx %>/member.do?action=move&page=memberlist"> 목록보기 </a>
 <table class = "tbl">
   <tr>
    <th>이름</th>
    <th>아이디</th>
    <th>팀아이디</th>
  <tr>
- <%
-for(int i=0;i<lst.size();i++){
-	%>  <tr width=100px>
-    <td > <%= lst.get(i).getName() %></td>
-    <td > <%= lst.get(i).getMemId() %> </td>
-    <td > <%= lst.get(i).getTeamId() %> </td>
-    </tr>
-    <%			
-	}
-	%>
 </table>
 </body>
 </html>

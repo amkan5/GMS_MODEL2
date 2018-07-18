@@ -222,8 +222,7 @@ public class MemberDAOImpl implements MemberDAO {
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe"
 				            ,"KAN","1253");
 				Statement stmt = conn.createStatement();*/
-		
-		
+		System.out.println("DAO1 " + bean.getMemId());
 		try {	ResultSet rs = DatabaseFactory.createDatabase(
 						Vendor.ORACLE, 
 						DBConstant.USERNAME, 
@@ -244,6 +243,7 @@ public class MemberDAOImpl implements MemberDAO {
 		                	 member.setRoll(rs.getString("ROLL"));
 			                }while(rs.next());
 		                }
+				System.out.println("DAO2 " + member.getMemId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

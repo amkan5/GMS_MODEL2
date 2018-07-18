@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <%
+	String ctx = application.getContextPath();
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,9 +10,11 @@
 </head>
 <body>
 	<h2 class="text-align">검색</h2>	
-		<form action="searchIdResult.jsp">
+		<form action="<%= ctx %>/member.do">
 			userID 입력 <br>
 			<input type="text" name="userid"><br>
+			<input type="hidden" name="action" value="move" />
+			<input type="hidden" name="page" value="searchMemberById"/>
 			<input type="submit" value="제출">
 		</form>
 </body>

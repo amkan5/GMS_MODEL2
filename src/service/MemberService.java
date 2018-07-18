@@ -12,7 +12,7 @@ public interface MemberService {
 	public MemberBean selectOne(String word);
 	public int countMember();
 	public void updateMember(MemberBean member);
-	public void delteMember(MemberBean member);
+	public void deleteMember(MemberBean member);
 	public boolean loginB(MemberBean bean); 
 	public MemberBean login(MemberBean bean);
 }
