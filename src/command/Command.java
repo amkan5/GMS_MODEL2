@@ -1,8 +1,21 @@
 package command;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import domain.MemberBean;
+
 public class Command implements Order { //일반빈하고 다름. implements를 사용. 
+	protected HttpServletRequest request;
 	protected String action,domain,page,view;
-	
+	protected List<MemberBean> members;
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
 	public String getAction() {
 		return action;
 	}

@@ -13,7 +13,7 @@
 		<form action="<%= ctx %>/member.do">
 			userID 입력 <br>
 			<input type="text" name="userid"><br>
-			<input type="hidden" name="action" value="move" />
+			<input type="hidden" name="action" value="retrieve" />
 			<input type="hidden" name="page" value="searchMemberById"/>
 			<input type="submit" value="제출">
 		</form>

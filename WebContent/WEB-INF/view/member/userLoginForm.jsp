@@ -18,10 +18,9 @@
 			Pass <br>
 			<input type="text" name="password" value="비번입력" ><br>
 			<input type="hidden" name="action" value="login" />
-			<input type ="hidden" name="page" value="userLoginResult" />
+			<input type ="hidden" name="page" value="my_page" />
 			<input type="submit" value="제출">
 		</form><br>
-		<a href="<%= ctx %>../../index.do">돌아가기</a>
 	</div>
 </body>
 </html>

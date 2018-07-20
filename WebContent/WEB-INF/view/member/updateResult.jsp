@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>updateResult</title>
+	<title>updateResult</ztitle>
 </head>
 <body>
 <% MemberBean mem = new MemberBean(); 

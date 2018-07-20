@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Carrier;
 import command.Sentry;
+import command.ListCommand;
 import domain.*;
 import enums.Action;
 import service.*;
@@ -32,84 +33,43 @@ public class MemberController extends HttpServlet {
 		case MOVE : 
 		/*	request.getRequestDispatcher("/WEB-INF/view/member/"+page+".jsp")
 			.forward(request, response);*/
-			try {
-				System.out.println("move안으로진입한다아!!");
-				Carrier.send(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Carrier.foward(request, response);
 			break;
-		case JOIN : 
-			mem = new MemberBean();
-			mem.setName(request.getParameter("name"));
-			mem.setPassword(request.getParameter("password"));
-			mem.setMemId(request.getParameter("userid"));
-			mem.setSsn(request.getParameter("ssn"));
-			//MemberServiceImpl.getInstance().countMember();
-			response.sendRedirect(request.getContextPath()
-					+"/member.do?action=move&page=joinResult"
-					); //도메인 response는 jsp에 사는애. 스크립트립. 멤버컨트롤러로 다시 진입시켜?
+		case JOIN: 
+			Carrier.redirect(request, response,"/member.do?action=move&page=userLoginForm");
+			//도메인 response는 jsp에 사는애. 스크립트립. 멤버컨트롤러로 다시 진입시켜?
 			System.out.println(mem);
 			break;
-		case LIST : 
-			lst = new ArrayList<>();
-			lst = MemberServiceImpl.getInstance().list();
-			System.out.println(lst.size());
-			response.sendRedirect(request.getContextPath()
-					+"/member.do?action=move&page=memberlist"
-					);
+		case UPDATE : 
+			Carrier.redirect(request, response,"/member.do?action=move&page=userLoginForm");
+			break;
+		case DELETE : 
+			Carrier.redirect(request, response, "/member.do?action=move&page=userLoginForm");
 			break;
 		case SEARCH : 
-			lst = new ArrayList<>();
-			lst = MemberServiceImpl.getInstance().selectSome(
-					request.getParameter("teamid")
-					);
-			System.out.println(lst.size());
-			response.sendRedirect(request.getContextPath()
-					+"/member.do?action=move&page=searchTeamResult");
+			Carrier.redirect(request, response, "/member.do?action=move&page=searchTeamResult");
 			break;
-		case RETRIEVE : 
-			System.out.println(
-					MemberServiceImpl.getInstance().selectOne(
-					request.getParameter("userid")
-					).toString()
-					);
-			response.sendRedirect(request.getContextPath()
-					+"/member.do?action=move&page=searchIdResult");
+		case RETRIEVE : //하나만 가져오는s거 
+			Carrier.redirect(request, response, "/member.do?action=move&page=searchIdResult");
+			break;
+		case LIST : 
+			request.getAttribute("list");
+			Carrier.redirect(request, response, "/member.do?action=move&page=memberlist");
+			/*response.sendRedirect(request.getContextPath()
+					+"/member.do?action=move&page=memberlist"
+					);*/
+			
 			break;
 		case COUNT : 
 			System.out.println(
 					MemberServiceImpl.getInstance().countMember()
 					);
 			break;
-		case UPDATE : 
-			mem = new MemberBean();
-			mem.setMemId(
-					request.getParameter("userId")
-					);
-			mem.setPassword(
-					request.getParameter("oldPass")
-					+"/"
-					+request.getParameter("newPass")
-					);
-			MemberServiceImpl.getInstance().updateMember(mem);
-			break;
-		case DELETE : 
-			MemberServiceImpl.getInstance().deleteMember(mem);
-			break;
 		case LOGIN : 
-			mem = new MemberBean();
-			mem.setMemId(
-					request.getParameter("userid")
-					);
-			mem.setPassword(
-					request.getParameter("password")
-					);
-			if(MemberServiceImpl.getInstance().loginB(mem)){
-				System.out.println("성공");
+			if(request.getAttribute("match").equals("TRUE")) {
+				Carrier.foward(request,response);
 			}else {
-				System.out.println("id나 비번이 틀립니다");
+				Carrier.redirect(request, response, "/member.do?action=move&page=userLoginForm");
 			}
 			break;
 		default: break;

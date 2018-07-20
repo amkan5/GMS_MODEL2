@@ -1,15 +1,35 @@
 package command;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Carrier {
-	public static void send(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		System.out.println("뷰 :"+Sentry.cmd.getView()); //syso도 패턴걸려있는거ㅎ 
-		request
-		.getRequestDispatcher(Sentry.cmd.getView())
-		.forward(request,response);
+	public static void foward(HttpServletRequest request,
+			HttpServletResponse response)  {
+		//System.out.println("뷰 :"+Sentry.cmd.getView()); //syso도 패턴걸려있는거ㅎ 
+		try {
+			request
+			.getRequestDispatcher(Sentry.cmd.getView())
+			.forward(request,response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void redirect(HttpServletRequest request,
+			HttpServletResponse response, String url) {
+		try {
+			response.sendRedirect(request.getContextPath()+url);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 	//얘는 보내는일밖에 안함 센트리한테 ? 근데 왜 이렇게하는걸까? 
 	//결정은 센트리가. 케리어한테는 뷰만 주고있음. 

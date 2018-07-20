@@ -8,8 +8,6 @@ public class Sentry {
 		String servletPath=request.getServletPath();
 		System.out.println("센트리 : "
 				+servletPath.substring(1,servletPath.indexOf(".")));
-		cmd = Commander.order(servletPath.substring(1,servletPath.indexOf(".")), 
-				request.getParameter("action"), 
-				request.getParameter("page"));
+		cmd = Commander.order(request);
 	}
 }

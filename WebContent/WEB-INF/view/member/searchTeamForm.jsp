@@ -9,11 +9,11 @@
 	<title>findbyteamForm</title>
 </head>
 <body>
-	<h2 class="text-align">검색</h2>	
+	<h2 class="text-align">검색</h2>	S
 		<form action="<%= ctx %>/member.do">
 			TeamID 입력 <br>
 			<input type="text" name="teamid"><br>
-			<input type="hidden" name="action" value="move" />
+			<input type="hidden" name="action" value="search" />
 			<input type="hidden" name="page" value="searchMemberByTeam" />
 			<input type="submit" value="제출">
 		</form>

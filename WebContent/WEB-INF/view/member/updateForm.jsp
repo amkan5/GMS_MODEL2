@@ -17,7 +17,8 @@
 	<input type="text" name="oldPass"><br>
 	NewPass <br>
 	<input type="text" name="newPass"><br>
-	<input type="hidden" name="action" value="memberUpdate" />
+	<input type="hidden" name="action" value="Update" />
+	<input type="hidden" name="page" value="updateForm" />
 	<input type="submit" value="제출">
 </form>
 	<a herf="../../main.jsp">돌아가기</a>

@@ -15,7 +15,7 @@
 	<input type="text" name="userId"><br>
 	Pass <br>
 	<input type="text" name="Pass"><br>
-	<input type="hidden" name="action" value="memberDelete" />
+	<input type="hidden" name="action" value="delete" />
 	<input type="submit" value="제출">
 </form>
 </body>

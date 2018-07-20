@@ -31,7 +31,6 @@
 			<td>
 			<ul>
 				<li><a href="<%= ctx %>/member.do?action=move&page=userLoginForm">사용자로그인</a></li>
-				<li><a href="<%= ctx %>/member/admin_login.do">관리자로그인</a></li>
 				<li><a href="<%= ctx %>/member.do?action=move&page=joinForm">회원가입</a> </li>
 				<li><a href="<%= ctx %>/member.do?action=move&page=updateForm">비밀번호바꾸기</a></li>
 				<li><a href="<%= ctx %>/member.do?action=move&page=deleteForm">회원탈퇴</a></li>

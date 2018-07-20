@@ -1,11 +1,14 @@
 package command;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class MoveCommand extends Command {
-	public MoveCommand(String domain, String action, String page) {
-		System.out.println("movecommender진입");
-		setDomain(domain);
-		setAction(action);
-		setPage(page);
+	public MoveCommand(HttpServletRequest request) {
+		setRequest(request);
+		setDomain(request.getServletPath().
+				substring(1,request.getServletPath().indexOf(".")));
+		setAction(request.getParameter("action"));
+		setPage(request.getParameter("page"));
 		execute();
 	}
 

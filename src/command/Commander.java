@@ -1,33 +1,44 @@
 package command;
 
+import javax.servlet.http.HttpServletRequest;
+
 import enums.Action;
 
 public class Commander {
 	public static Command order(
-		String domain, String action, String page){
+		HttpServletRequest request){
 		Command cmd = null;
-		switch(Action.valueOf(action.toUpperCase())) {
+		switch(Action.valueOf(
+				request.getParameter("action")
+				.toUpperCase())) {
 		case MOVE : 	
 		System.out.println("commender진입");
-			cmd = new MoveCommand(domain,action,page);
+			cmd = new MoveCommand(request);
 			break;
 		case JOIN : 
-			cmd = new CreateCommand(domain,action,page);
+			cmd = new CreateCommand(request);
+			break;
+		case LOGIN :
+			cmd = new LoginCommand(request);
+			break;
+		case UPDATE :
+			cmd = new UpdateCommand(request);
 			break;
 		case LIST :
-			cmd = new listCommand(domain,action,page);
+			//cmd = new listCommand(domain,action,page);
 			break;
 		case SEARCH :
-			cmd = new searchCommand(domain,action,page);
+			cmd = new SearchCommand(request);
 			break;
 		case RETRIEVE : 
-			cmd = new RetrieveCommand(domain,action,page);
+			cmd = new RetrieveCommand(request);
 			break;
 		case COUNT :
 			break;
-		case UPDATE :
-			break;
 		case DELETE :
+			cmd = new DeleteCommand(request);
+			break;
+		default:
 			break;
 		}
 		return cmd;
