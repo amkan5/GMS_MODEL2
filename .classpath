@@ -14,5 +14,9 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="lib" path="C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc6.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/JavaWorkspace/lombok.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/JavaWorkspace/cos.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/JavaWorkspace/jstl.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/JavaWorkspace/standard.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -11,9 +11,11 @@ public class Carrier {
 			HttpServletResponse response)  {
 		//System.out.println("뷰 :"+Sentry.cmd.getView()); //syso도 패턴걸려있는거ㅎ 
 		try {
+			System.out.println("캐리어진입");
 			request
 			.getRequestDispatcher(Sentry.cmd.getView())
 			.forward(request,response);
+			System.out.println(Sentry.cmd.getView());
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
