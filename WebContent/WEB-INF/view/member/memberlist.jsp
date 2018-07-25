@@ -2,9 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "domain.*" %>
-  <%
-	String ctx = application.getContextPath();
-%>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,7 +12,7 @@
 	<title>memberList</title>
 </head>
 <body>
-<a href="<%= ctx %>/member.do?action=move&page=memberlist"> 목록보기 </a>
+<h3>목록보기</h3>
 <table class = "tbl">
   <tr>
    <th>이름</th>

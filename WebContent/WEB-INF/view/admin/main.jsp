@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+	<jsp:include page="../common/head.jsp"/>
 	<title>ADMIN</title>
 	<link rel="stylesheet" href="${ctx}/resources/css/style.css" />
 </head>
@@ -21,5 +22,6 @@
 	   <jsp:include page="../common/footerBox.jsp"/>
 	</div>
 </div>
+	
 </body>
 </html>

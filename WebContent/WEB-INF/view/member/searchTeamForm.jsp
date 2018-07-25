@@ -9,8 +9,10 @@
 	<title>findbyteamForm</title>
 </head>
 <body>
-	<h2 class="text-align">검색</h2>	S
-		<form action="<%= ctx %>/member.do">
+ <jsp:include page = "../common/validationForm.jsp"/>
+	<h2 class="text-align">검색</h2>	
+	<form name="searchTeam" action="${ctx}/member.do"
+		onsubmit="retrun validationForm()" method="get">
 			TeamID 입력 <br>
 			<input type="text" name="teamid"><br>
 			<input type="hidden" name="action" value="search" />

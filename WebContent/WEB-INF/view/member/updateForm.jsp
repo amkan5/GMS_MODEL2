@@ -9,8 +9,10 @@
 	<title>updateForm</title>
 </head>
 <body>
+ <jsp:include page = "../common/validationForm.jsp"/>
 <h3>비밀번호 변경</h3>
-<form action="<%= ctx %>/member.do">
+<form name="updateForm" action="${ctx}/member.do"
+		onsubmit="retrun validationForm()" method="get">
 	ID <br>
 	<input type="text" name="userId"><br>
 	Pass <br>

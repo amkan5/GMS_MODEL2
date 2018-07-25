@@ -9,8 +9,10 @@
 	<title>Document</title>
 </head>
 <body>
+ <jsp:include page = "../common/validationForm.jsp"/>
 	<h2 class="text-align">검색</h2>	
-		<form action="<%= ctx %>/member.do">
+		<form name="searchId" action="${ctx}/member.do"
+		onsubmit="return validationForm()" method="get">
 			userID 입력 <br>
 			<input type="text" name="userid"><br>
 			<input type="hidden" name="action" value="retrieve" />

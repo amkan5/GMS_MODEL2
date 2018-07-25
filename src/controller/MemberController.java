@@ -66,6 +66,7 @@ public class MemberController extends HttpServlet {
 					);
 			break;
 		case LOGIN : 
+			System.out.println("로그인진입");
 			if(request.getAttribute("match").equals("TRUE")) {
 				Carrier.foward(request,response);
 			}else {
