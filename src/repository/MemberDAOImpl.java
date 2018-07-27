@@ -47,7 +47,11 @@ public class MemberDAOImpl implements MemberDAO {
 						.executeUpdate(String.format(
 								MemberQuery.INSERT_MEMBER.toString(),
 								bean.getMemId(),bean.getPassword(),
-								bean.getName(),bean.getSsn()));
+								bean.getName(),bean.getSsn(),
+								bean.getAge(), bean.getGender(),
+								bean.getSubject(), bean.getRoll(),
+								bean.getTeamId()
+								));
 			 System.out.println(bean.toString());
 			 System.out.println("가입결과: "+ rs);
 		} catch (Exception e) {

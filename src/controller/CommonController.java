@@ -31,7 +31,7 @@ public class CommonController extends HttpServlet {
 						request.getContextPath()+"/resources/"+r.toString().toLowerCase()
 						);			
 			i++;
-			System.out.println(i);
+			System.out.println(request.getContextPath()+"/resources/"+r.toString().toLowerCase());
 			}
 	/*	HttpSession session = request.getSession(); *///갖고와서 객체를 만드는 관계. 필드에 Session객체가 있오. 그거 하나 준거라 얘는 죽지않음. 
 		/*session.setAttribute(Domain.CONTEXT.toString(), 

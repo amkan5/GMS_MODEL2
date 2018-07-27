@@ -16,9 +16,9 @@ public enum MemberQuery {
 			break;
 		case INSERT_MEMBER :
 			query = "INSERT INTO MEMBER( "
-					+"MEM_ID, PASSWORD, NAME, SSN ) "
+					+"MEM_ID, PASSWORD, NAME, SSN, AGE, GENDER, SUBJECT,ROLL ) " //섭젝트 쿼리쳐야해
 					+"VALUES "
-					+"( '%s', '%s', '%s', '%s' )";
+					+"( '%s', '%s', '%s', '%s' ,'%s' , '%s', '%s', '%s' )";
 			break;
 		case COUNT_MEMBER : 
 			query = "SELECT COUNT(*) AS count FROM MEMBER";

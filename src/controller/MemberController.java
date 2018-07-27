@@ -36,7 +36,7 @@ public class MemberController extends HttpServlet {
 			Carrier.foward(request, response);
 			break;
 		case JOIN: 
-			Carrier.redirect(request, response,"/member.do?action=move&page=userLoginForm");
+			Carrier.redirect(request, response,"/member.do?action=move&page=joinForm");
 			//도메인 response는 jsp에 사는애. 스크립트립. 멤버컨트롤러로 다시 진입시켜?
 			System.out.println(mem);
 			break;

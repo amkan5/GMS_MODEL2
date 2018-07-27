@@ -28,6 +28,7 @@ public class Carrier {
 			HttpServletResponse response, String url) {
 		try {
 			response.sendRedirect(request.getContextPath()+url);
+			System.out.println("url 주소 : " + request.getContextPath()+url);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

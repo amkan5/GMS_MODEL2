@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import domain.MemberBean;
 import enums.Domain;
+import service.MemberServiceImpl;
 
 public class CreateCommand extends Command{
 	public CreateCommand(HttpServletRequest request) {
@@ -24,7 +25,12 @@ public class CreateCommand extends Command{
 				mem.setPassword(request.getParameter("password"));
 				mem.setMemId(request.getParameter("userid"));
 				mem.setSsn(request.getParameter("ssn"));
-				//MemberServiceImpl.getInstance().countMember();
+				mem.setAge(request.getParameter("age"));
+				mem.setGender(request.getParameter("gender"));
+				mem.setSubject(request.getParameter("subject"));
+				mem.setRoll(request.getParameter("roll"));
+				mem.setTeamId(request.getParameter("teamid"));
+				MemberServiceImpl.getInstance().createMember(mem);
 				System.out.println("회원가입 성공!!! ");
 				break;
 		default:

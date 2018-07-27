@@ -2,9 +2,10 @@
 <div id="login-box">
 	<a id="moveLoginForm" >LOGIN</a>
 			&nbsp;&nbsp;
-	<a onclick="common.move('member','move','joinForm')">JOIN</a>
+	<a id="moveJoinForm">JOIN</a>
 		</div>
-<script>/* 
+<script>
+/* 
 var moveLoginForm = document.getElementById('moveLoginForm');
 moveLoginForm.addEventClickLisner('click',function(){
 	alert('클릭 이벤트 체크 !!');
@@ -13,9 +14,20 @@ moveLoginForm.addEventClickLisner('click',function(){
 
 document.getElementById('moveLoginForm')
  .addEventListener('click',function(){
- alert('클릭 이벤트 체크 !!');
- common.move('member','move','userLoginForm');
+ alert('로그인 클릭 이벤트 체크 !!');
+ router.move(['${ctx}','member','move','userLoginForm']);
  });	
- 
- 
+
+/* document.getElementById('moveJoinForm')
+ .addEventListener('click',function(){
+ alert('조인 클릭 이벤트 체크 !!');
+ new Common().move('${ctx}','member','move','joinForm');
+ });
+  */
+ document.getElementById('moveJoinForm')
+ .addEventListener('click',function(){
+  alert('조인 클릭 이벤트 체크 !!');
+  router.move(['${ctx}','member','join','joinForm']);
+  });
+
 </script>
