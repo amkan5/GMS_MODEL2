@@ -15,8 +15,12 @@ moveLoginForm.addEventClickLisner('click',function(){
 document.getElementById('moveLoginForm')
  .addEventListener('click',function(){
  alert('로그인 클릭 이벤트 체크 !!');
- router.move(['${ctx}','member','move','userLoginForm']);
- });	
+ router.move({context:'${ctx}',
+			domain : 'member',
+			action: 'move',
+			page: 'userLoginForm'})
+			});
+		 
 
 /* document.getElementById('moveJoinForm')
  .addEventListener('click',function(){
@@ -27,7 +31,11 @@ document.getElementById('moveLoginForm')
  document.getElementById('moveJoinForm')
  .addEventListener('click',function(){
   alert('조인 클릭 이벤트 체크 !!');
-  router.move(['${ctx}','member','join','joinForm']);
-  });
+  router.move({context:'${ctx}',
+	  			domain : 'member',
+	  			action: 'join',
+	  			page: 'joinForm'})
+ 				});
+
 
 </script>

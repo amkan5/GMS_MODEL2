@@ -12,7 +12,7 @@ public class UpdateCommand extends Command{
 		setDomain(request.getServletPath().
 				substring(1,request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
+		setPage("my_page");
 		execute();
 	}
 	@Override
@@ -21,15 +21,17 @@ public class UpdateCommand extends Command{
 		case MEMBER : 
 			MemberBean mem = new MemberBean();
 			mem.setMemId(
-					request.getParameter("userId")
+					request.getParameter("memId")
 					);
 			mem.setPassword(
 					request.getParameter("oldPass")
-					+"/"
+					+'/'
 					+request.getParameter("newPass")
 					);
-			System.out.println("업데이트성공");
+			mem.setRoll(request.getParameter("roll"));
+			mem.setTeamId(request.getParameter("teamid"));
 			//MemberServiceImpl.getInstance().updateMember(mem);
+			System.out.println(mem.toString());
 				break;
 		default:
 			break;

@@ -11,16 +11,6 @@
 		return { move : move }; //키값과 value
 	}()); //이게 (function(){}()) 싱글 쓰레드. 
 */
-
-var router = (()=>{ //()는 함수이름이 없잖아 
-return { move : x=>{  //파라미터가 있을때는 x 없을때는 () 
-	location.href = x[0] + '/'
-		+x[1]
-		+".do?action=" + x[2]
-		+"&page=" + x[3]
-}}; //키값과 value 키값은 어자피 스트링이니까 자동으로 먹히게함. 
-})(); //이게 (function(){}()) 싱글 쓰레드. 
-
 /* 두번째 버전 var service = (()=>{
 	return {
 		loginValidation : x=>{
@@ -38,8 +28,21 @@ return { move : x=>{  //파라미터가 있을때는 x 없을때는 ()
 })();*/
 
 
+"use strict";
+var router = (()=>{ //()는 함수이름이 없잖아 
+return { move : x=>{  //파라미터가 있을때는 x 없을때는 () 
+	location.href = 
+		x.context + '/'
+		+x.domain
+		+".do?action=" + x.action
+		+"&page=" + x.page
+}}; //키값과 value 키값은 어자피 스트링이니까 자동으로 먹히게함. 
+})(); //이게 (function(){}()) 싱글 쓰레드. 
+
+
+
 var member = (()=>{ //파라미터 봉쇄해놨음. 보안걸림.  클로져를 걸어둔 객체. 
-		var _userId, _ssn, _password,_age,_roll,_teamid,_gender; //앞에 _를 붙이면 인스턴스변수
+		var _userId, _ssn, _password,_age,_roll,_teamId,_gender,_subject; //앞에 _를 붙이면 인스턴스변수
 		var setUserid = (userId)=>{this._userId = userId;}
 		var setSsn = (ssn)=>{this._ssn = ssn;}
 		var setPassword = (password)=>{this._password = password;}
@@ -56,11 +59,17 @@ var member = (()=>{ //파라미터 봉쇄해놨음. 보안걸림.  클로져를 
 			};
 			this._gender = gender;
 			}
+		var setRoll = (roll)=>{this._roll = roll;}
+		var setTeamId = (teamId)=>{this._teamId = teamId;}
+		var setSubject = (subject)=>{this._subject = subject;}
 		var getMemid = ()=>{return this._userid;}
 		var getSsn = ()=>{return this._ssn;}
 		var getPassword = ()=>{return this._password;}
 		var getAge = ()=>{return this._age;}
 		var getGender = ()=>{return this._gender;}
+		var getRoll = ()=>{return this._roll;}
+		var getSubject = ()=>{return this._subject;}
+		var getTemaId = ()=>{return this.teamId;}
 			return{ //여기서부터 열려있는거 
 				setUserid : setUserid,
 				setSsn : setSsn,
@@ -78,9 +87,37 @@ var member = (()=>{ //파라미터 봉쇄해놨음. 보안걸림.  클로져를 
 					 member.setSsn(x.ssn);
 					member.setAge(x.ssn);
 					member.setGender(x.ssn);
-				 }
+				 },
+				update : x=>{
+					member.setPassword(x.oldPass+"/"+x.newPass);
+					member.setTeamId(x.teamId);
+					member.setRoll(x.roll);
+				}
 			}
 })();
+
+
+var service = (()=>{
+	return {
+		nullChecker : x=>{
+			var j = { //제이슨은 클로져가없음. 
+					checker : true, // checker는 string 
+					text : '입력하세요' //value는 붙여야함
+			};
+			for (var i in x){
+				if(x[i]===''){
+					j.text = i + '입력하세요';
+					j.checker = false;
+					//return j;
+				}		
+			}
+			 return j;
+		}
+		
+	}
+	
+})();
+
 
 /*var member = (()=> {
 	   var _memberId,_ssn,_pass,_name,_age,_teamId,_gender,_roll;      
@@ -164,27 +201,6 @@ var member = (()=>{ //파라미터 봉쇄해놨음. 보안걸림.  클로져를 
 	   }
 	})();
 */
-
-
-
-var service = (()=>{
-	return {
-		nullChecker : x=>{
-			var j = { //제이슨은 클로져가없음. 
-					checker : true, // checker는 string 
-					text : '입력하세요' //value는 붙여야함
-			};
-			for (i in x){
-				if(x[i]===''){
-					j.text = i + '입력하세요';
-					j.checker = false;
-				
-				}		
-			}
-			 return j;
-		}
-	}
-})();
 
 
 

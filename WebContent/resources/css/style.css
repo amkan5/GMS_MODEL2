@@ -1,9 +1,9 @@
-/* table,th,td{
+ table,th,td{
 	border: 1px solid black;
 	width:80%;
 	border-collapse: collapse;
 	text-align: center;
-} */
+} 
 body{
    font-family: 'Malgun Gothic', 'Verdana';
    background-color: #d1d1d1;

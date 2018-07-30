@@ -41,7 +41,8 @@ public class MemberController extends HttpServlet {
 			System.out.println(mem);
 			break;
 		case UPDATE : 
-			Carrier.redirect(request, response,"/member.do?action=move&page=userLoginForm");
+			System.out.println("컨트롤러-업데이트 진입");
+			Carrier.redirect(request, response,"/member.do?action=move&page=my_page");
 			break;
 		case DELETE : 
 			Carrier.redirect(request, response, "/member.do?action=move&page=userLoginForm");
@@ -68,7 +69,10 @@ public class MemberController extends HttpServlet {
 		case LOGIN : 
 			System.out.println("로그인진입");
 			if(request.getAttribute("match").equals("TRUE")) {
+				request.getSession()
+				.setAttribute("user", request.getAttribute("user"));
 				Carrier.foward(request,response);
+				//왜 로그인커맨드에서 안하고 여기서 하는걸까? 
 			}else {
 				Carrier.redirect(request, response, "/member.do?action=move&page=userLoginForm");
 			}

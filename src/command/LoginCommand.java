@@ -12,7 +12,7 @@ public LoginCommand(HttpServletRequest request) {
 	setDomain(request.getServletPath().
 			substring(1,request.getServletPath().indexOf(".")));
 	setAction(request.getParameter("action"));
-	setPage(request.getParameter("page"));
+	setPage("my_page");
 	this.execute(); //view 
 }
 @Override

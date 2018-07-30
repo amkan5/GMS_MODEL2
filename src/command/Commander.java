@@ -12,7 +12,7 @@ public class Commander {
 				request.getParameter("action")
 				.toUpperCase())) {
 		case MOVE : 	
-		System.out.println("commender진입");
+		System.out.println("므브 commender진입");
 			cmd = new MoveCommand(request);
 			break;
 		case JOIN : 

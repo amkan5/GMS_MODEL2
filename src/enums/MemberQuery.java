@@ -10,7 +10,7 @@ public enum MemberQuery {
 		switch (this) {
 		case LOGIN :
 			query = "SELECT "
-					+"MEM_ID USERID, PASSWORD, TEAM_ID TEAMID, NAME, AGE, ROLL FROM MEMBER "+
+					+"MEM_ID USERID, PASSWORD, TEAM_ID TEAMID, NAME, AGE, ROLL,GENDER FROM MEMBER "+
 					"WHERE MEM_ID LIKE '%s' "
 					+"AND PASSWORD LIKE '%s' ";
 			break;
@@ -24,7 +24,8 @@ public enum MemberQuery {
 			query = "SELECT COUNT(*) AS count FROM MEMBER";
 			break;
 		case UPDATE_MEMBER : 
-			query = "UPDATE MEMBER SET PASSWORD = '%s' "
+			query = "UPDATE MEMBER SET PASSWORD = '%s',"
+					+ "ROLL= '%s', TEAM_ID = '%s' "
 					+ "WHERE MEM_ID LIKE '%s' "
 					+ "AND PASSWORD LIKE '%s'";
 			break;
@@ -52,7 +53,8 @@ public enum MemberQuery {
 					+ "ROLL,"
 					+ "PASSWORD,"
 					+ "SSN,"
-					+ "TEAM_ID "
+					+ "TEAM_ID,"
+					+ "GENDER"
 					+ " FROM MEMBER "
 					+ "WHERE MEM_ID LIKE '%s'";
 			break;

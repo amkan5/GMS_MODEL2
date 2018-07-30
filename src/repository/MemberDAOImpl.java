@@ -71,6 +71,8 @@ public class MemberDAOImpl implements MemberDAO {
 					.createStatement()
 					.executeQuery(String.format(MemberQuery.UPDATE_MEMBER.toString(),
 							bean.getPassword().split("/")[1],
+							bean.getRoll(),
+							bean.getTeamId(),
 							bean.getMemId(),
 							bean.getPassword().split("/")[0]));
 		} catch (SQLException e) {
@@ -153,6 +155,7 @@ public class MemberDAOImpl implements MemberDAO {
 			mem.setRoll(rs.getString("ROLL"));
 			mem.setSsn(rs.getString("SSN"));
 			mem.setTeamId(rs.getString("TEAM_ID"));
+			mem.setGender(rs.getString("GENDER"));
 		}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -245,6 +248,7 @@ public class MemberDAOImpl implements MemberDAO {
 		                	 member.setName(rs.getString("NAME"));
 		                	 member.setAge(rs.getString("AGE"));
 		                	 member.setRoll(rs.getString("ROLL"));
+		                	 member.setRoll(rs.getString("GENDER"));
 			                }while(rs.next());
 		                }
 				System.out.println("DAO2 " + member.getMemId());
