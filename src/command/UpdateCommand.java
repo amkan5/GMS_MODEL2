@@ -19,19 +19,14 @@ public class UpdateCommand extends Command{
 	public void execute() {
 		switch(Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
 		case MEMBER : 
-			MemberBean mem = new MemberBean();
-			mem.setMemId(
-					request.getParameter("memId")
-					);
+			MemberBean mem = (MemberBean) request.getSession().getAttribute("user");
 			mem.setPassword(
 					request.getParameter("oldPass")
-					+'/'
-					+request.getParameter("newPass")
 					);
 			mem.setRoll(request.getParameter("roll"));
 			mem.setTeamId(request.getParameter("teamid"));
-			//MemberServiceImpl.getInstance().updateMember(mem);
-			System.out.println(mem.toString());
+			MemberServiceImpl.getInstance().updateMember(mem);
+			System.out.println("업데이트 진입완료");
 				break;
 		default:
 			break;

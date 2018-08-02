@@ -10,8 +10,7 @@
 <body>
  <jsp:include page = "../common/validationForm.jsp"/>
 <h3>비밀번호 변경</h3>
-<form id="updateForm" name="updateForm" action="${ctx}/member.do"
-		onsubmit="retrun validationForm()" method="get">
+<form id="updateForm" name="updateForm" action="${ctx}/member.do">
 	ID : ${user.memId} <br>
 	<input type="hidden" name="memId" value="${user.memId}">
 	Pass <br>
@@ -21,16 +20,15 @@
 	이름 : ${user.name}<br>
 	현재 소속팀 : ${user.teamId}<br>
 			<input type = "radio" id="teamId_1" name="teamid"
-				value="nolja" checked="checked"/> 놀자
+				value="a" /> 놀자
 			<input type = "radio" id="teamId_2" name="teamid"
-				value="jieunHouse"/> 지은이	
+				value="h"/> 지은이	
 			<input type = "radio" id="teamId_3" name="teamid"
-				value="turtleKing"/> 터틀킹
+				value="s"/> 터틀킹
 			<input type = "radio"id="teamId_4"  name="teamid"
-				value="coddingZzang"/> 코딩스타
+				value="c"/> 코딩스타
 			<br>
 	 프로젝트역할 ${user.roll}<br>
-	 		<input type = "hidden" name= "roll" value="${user.roll}">
 			<select name="roll" id="roll">
 				<option value="Leader">팀장</option>
 				<option value="front">프론트개발</option>
@@ -39,19 +37,18 @@
 				<option value="minfe">민폐</option>
 			 </select><br>
 	
- <input type="hidden" name="action" value="update" />
-<input type="hidden" name="page" value="my_page" /> 
+<!-- <input type="hidden" name="page" value="my_page" />  -->
 <input type="button" id="updateConformBtn" value="수정확인">
 
 </form>
 
 <Script>
 var form = document.getElementById('updateForm'); //document의 object로 만든 객체. dom객체
-/* for(var i=1;i<=4;i++){
-if(documnet.getElementById('teamId_'+i).value
-		 ==='${user.teamId}'){
+ for(var i=1;i<=4;i++){
+if(document.getElementById('teamId_'+i).value==='${user.teamId}'){
+	document.getElementById('teamId_'+i).checked ='checked';
 }
-} */
+} 
 var roll = document.getElementById('roll');
 for(var i=0;i<roll.options.length;i++){
 	if(roll.options[i].value==='${user.roll}'){
@@ -64,18 +61,22 @@ document.getElementById('updateConformBtn')
 .addEventListener('click',function(){
 	alert('updateForm시작');
 	if(form.newPass.value===''){
-		form.newPass.value = ${user.password};
+		form.oldPass.value = ${user.password}+"/"+${user.password};
+	}else{
+		form.oldPass.value = ${user.password}+"/"+form.newPass.value;
 	}
+	var node = document.createElement('input');
+	node.setAttribute('type','hidden');
+	node.setAttribute('name','action');
+	node.setAttribute('value','update');					
+	form.appendChild(node);
   form.action = "${ctx}/member.do";
   form.method = "post"; 
   form.submit();
-  alert("updateForm입력완료");
+  alert("updateForm입력완료"); //생각해보니까 roll이랑, teamid변경시 어따보냄?? 
 });
 
- /* router.move({context:'${ctx}',
-	  			domain : 'member',
-	  			action: 'update',
-	  			page: 'my_page'}) */
+
 		
 </Script>
 </body>

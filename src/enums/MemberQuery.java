@@ -16,9 +16,9 @@ public enum MemberQuery {
 			break;
 		case INSERT_MEMBER :
 			query = "INSERT INTO MEMBER( "
-					+"MEM_ID, PASSWORD, NAME, SSN, AGE, GENDER, SUBJECT,ROLL ) " //섭젝트 쿼리쳐야해
+					+"MEM_ID, PASSWORD, NAME, SSN, AGE, GENDER, SUBJECT, ROLL, TEAM_ID ) " //섭젝트 쿼리쳐야해
 					+"VALUES "
-					+"( '%s', '%s', '%s', '%s' ,'%s' , '%s', '%s', '%s' )";
+					+"( '%s', '%s', '%s', '%s' ,'%s' , '%s', '%s', '%s' ,'%s' )";
 			break;
 		case COUNT_MEMBER : 
 			query = "SELECT COUNT(*) AS count FROM MEMBER";
@@ -42,19 +42,20 @@ public enum MemberQuery {
 					+ "ROLL,"
 					+ "PASSWORD,"
 					+ "SSN,"
-					+ "TEAM_ID"
+					+ "TEAM_ID,"
+					+ "GENDER"
 					+ " FROM MEMBER";
 			break;
 		case SELECT_ONE_MEMBER :
 			query = "SELECT "
-					+ "MEM_ID AS USERID,"
+					+ "MEM_ID AS USERID, "
 					+ "NAME,"
-					+ "AGE,"
-					+ "ROLL,"
-					+ "PASSWORD,"
-					+ "SSN,"
-					+ "TEAM_ID,"
-					+ "GENDER"
+					+ "AGE, "
+					+ "ROLL, "
+					+ "PASSWORD, "
+					+ "SSN, "
+					+ "TEAM_ID, "
+					+ "GENDER "
 					+ " FROM MEMBER "
 					+ "WHERE MEM_ID LIKE '%s'";
 			break;
@@ -66,21 +67,23 @@ public enum MemberQuery {
 					+ "WHERE TEAM_NAME LIKE '%s'";
 					break;
 		case SELECT_SOME_MEMBER :
-			query = "SELECT "
-					+ "MEM_ID AS USERID,"
+			query =  "SELECT "
+					+ "MEM_ID AS USERID, "
 					+ "NAME,"
-					+ "AGE,"
-					+ "ROLL,"
-					+ "PASSWORD,"
-					+ "SSN,"
-					+ "TEAM_ID "
+					+ "AGE, "
+					+ "ROLL, "
+					+ "PASSWORD, "
+					+ "SSN, "
+					+ "TEAM_ID, "
+					+ "GENDER "
 					+ " FROM MEMBER "
-					+ "WHERE TEAM_ID LIKE '%s'";
-			System.out.println(query);
+					+ "WHERE %s LIKE '%s'";
 			break;
 		}
 		// TODO Auto-generated method stub
 		return query;
+		
+		
 	}
 	
 }

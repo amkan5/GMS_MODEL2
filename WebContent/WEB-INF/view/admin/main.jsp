@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 	<jsp:include page="../common/head.jsp"/>
-	<title>ADMIN</title>
+	<title>ADMIN main</title>
 	<link rel="stylesheet" href="${ctx}/resources/css/style.css" />
 </head>
 <body>

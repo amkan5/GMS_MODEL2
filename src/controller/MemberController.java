@@ -20,6 +20,9 @@ import service.*;
 @WebServlet({"/member.do"}) //ServeltPath 
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public MemberController() {
+		super();
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		System.out.println("MemberController Enter!!");
@@ -36,7 +39,7 @@ public class MemberController extends HttpServlet {
 			Carrier.foward(request, response);
 			break;
 		case JOIN: 
-			Carrier.redirect(request, response,"/member.do?action=move&page=joinForm");
+			Carrier.redirect(request, response,"/member.do?action=move&page=userLoginForm");
 			//도메인 response는 jsp에 사는애. 스크립트립. 멤버컨트롤러로 다시 진입시켜?
 			System.out.println(mem);
 			break;
@@ -53,14 +56,14 @@ public class MemberController extends HttpServlet {
 		case RETRIEVE : //하나만 가져오는s거 
 			Carrier.redirect(request, response, "/member.do?action=move&page=searchIdResult");
 			break;
-		case LIST : 
+		/*case LIST : 
+			System.out.println("member의 리스트");
 			request.getAttribute("list");
-			Carrier.redirect(request, response, "/member.do?action=move&page=memberlist");
-			/*response.sendRedirect(request.getContextPath()
+			Carrier.foward(request, response);
+			response.sendRedirect(request.getContextPath()
 					+"/member.do?action=move&page=memberlist"
-					);*/
-			
-			break;
+					);
+			break;*/
 		case COUNT : 
 			System.out.println(
 					MemberServiceImpl.getInstance().countMember()
@@ -69,8 +72,8 @@ public class MemberController extends HttpServlet {
 		case LOGIN : 
 			System.out.println("로그인진입");
 			if(request.getAttribute("match").equals("TRUE")) {
-				request.getSession()
-				.setAttribute("user", request.getAttribute("user"));
+				/*request.getSession()
+				.setAttribute("user", request.getAttribute("user"));*/ //반복제거
 				Carrier.foward(request,response);
 				//왜 로그인커맨드에서 안하고 여기서 하는걸까? 
 			}else {

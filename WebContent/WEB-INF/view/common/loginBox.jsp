@@ -33,7 +33,7 @@ document.getElementById('moveLoginForm')
   alert('조인 클릭 이벤트 체크 !!');
   router.move({context:'${ctx}',
 	  			domain : 'member',
-	  			action: 'join',
+	  			action: 'move',
 	  			page: 'joinForm'})
  				});
 

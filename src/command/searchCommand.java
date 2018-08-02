@@ -22,17 +22,26 @@ public SearchCommand(HttpServletRequest request) {
 }
 @Override
 	public void execute() {
-	switch(Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
-	case MEMBER :
-		/*List lst = new ArrayList<>();
-		lst = MemberServiceImpl.getInstance().selectSome(
-				request.getParameter("teamid")
+		//System.out.println("searchOp: " + request.getParameter("searchOption"));
+		//System.out.println("searchWr: " + request.getParameter("searchWord"));		
+	/*강사님버전
+	 select *
+	 from admin 
+	 where searchOption like 'SearchWord'
+	 * */
+
+	//내버전
+	request.setAttribute("list",
+				 MemberServiceImpl.getInstance().selectSome(
+						 	request.getParameter("searchOption")
+							+'/'+request.getParameter("searchWord")	
+				 ));
+	/*초기버전	List lst = new ArrayList<>();
+		 lst = MemberServiceImpl.getInstance().selectSome(
+				request.getParameter("searchWord")
 				);*/
-		System.out.println("써치성공");
-		break;
-	default:
-		break;
-	}
+		System.out.println("써치성공인가");
+
 		super.execute();
 	}
 

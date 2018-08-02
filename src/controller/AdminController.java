@@ -12,9 +12,12 @@ import command.Carrier;
 import command.Sentry;
 import enums.Action;
 
-@WebServlet("/admin.do")
+@WebServlet({"/admin.do"})
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public AdminController() {
+		super();
+	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		Sentry.init(request);
@@ -22,7 +25,18 @@ public class AdminController extends HttpServlet {
 		case MOVE : 
 			System.out.println("어드민므브");
 			Carrier.foward(request, response);
-			System.out.println("어드민므브3");
+			break;
+		case LIST :
+			request.getAttribute("list");
+			Carrier.foward(request, response);
+			break;
+		case RETRIEVE :
+			Carrier.foward(request, response);
+			break;
+		case SEARCH :
+			System.out.println("어드민의 써치");
+			request.getAttribute("list");
+			Carrier.foward(request, response);
 			break;
 		default:
 			break;

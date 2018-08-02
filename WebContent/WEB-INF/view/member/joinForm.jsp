@@ -52,10 +52,10 @@
 			 <input type="checkbox" name="subject" value="spring" /> spring<br>
 			  
 			  
-			<input type ="hidden" name="gender"  />
+			<!-- <input type ="hidden" name="gender"  />
 			<input type ="hidden" name="age"/>
-			<input type="hidden" name="action" value="move" />
-			<input type ="hidden" name="page" value="userLoginForm" />
+			<input type="hidden" name="action" value="join" /> -->
+			<!-- <input type ="hidden" name="page" value="userLoginForm" /> -->
 			<input id="joinFormBtn" type="button" value="제출">
 		</form><br>
 	</div>
@@ -80,9 +80,26 @@
 				 name:document.joinForm.name.value,
 				 ssn:document.joinForm.ssn.value
 					}); 
-			document.joinForm.age.value = member.getAge();
-			document.joinForm.gender.value = member.getGender();
+			//document.joinForm.age.value = member.getAge();
+			//document.joinForm.gender.value = member.getGender();
 			alert(member.getAge());
+			 var json = [{'name': 'action',
+						'value': 'join'},
+						{'name':'age',
+							'value': member.getAge()},
+						{'name':'gender',
+								'value':member.getGender()}
+						];
+	/* 		var json2 = {'type':'hidden','name':'age',
+						'value': member.getAge()}  */
+		  for (var i=0;i<3;i++){ 
+			var node = document.createElement('input');
+			node.setAttribute('type','hidden');
+			node.setAttribute('name',json[i].name);
+			node.setAttribute('value',json[i].value);
+		 form.appendChild(node); 
+		  }
+		alert(json[0].value);
 			form.submit(); 
 		}else{
 			alert(x.text);

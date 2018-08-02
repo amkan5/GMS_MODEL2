@@ -20,14 +20,14 @@ public class MemberDAOImpl implements MemberDAO {
 	private Statement stmt;
 	private MemberDAOImpl() {
 		try {
-			ResultSet rs = DatabaseFactory.createDatabase(
+			/*ResultSet rs = DatabaseFactory.createDatabase(
 					Vendor.ORACLE, 
 					DBConstant.USERNAME, 
 					DBConstant.PASSWORD)
 					.getConnection()
 					.createStatement()
 					.executeQuery("")
-					;
+					;*/
 			//이걸풀면 ResultSet rs= stmt.executeQuery(sql); 
 			// stmt<에들어가야할게 conn.createStatement니까. 
 			
@@ -65,6 +65,8 @@ public class MemberDAOImpl implements MemberDAO {
 	public void updateMember(MemberBean bean) {
 		try {
 			System.out.println("updateD1 : " + bean.toString());
+			System.out.println(MemberQuery.UPDATE_MEMBER.toString());
+			System.out.println(bean.getPassword().split("/")[1]);
 			 DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, 
 					DBConstant.PASSWORD)
 					.getConnection()
@@ -75,6 +77,7 @@ public class MemberDAOImpl implements MemberDAO {
 							bean.getTeamId(),
 							bean.getMemId(),
 							bean.getPassword().split("/")[0]));
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -120,6 +123,7 @@ public class MemberDAOImpl implements MemberDAO {
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setSsn(rs.getString("SSN"));
 				mem.setTeamId(rs.getString("TEAM_ID"));
+				mem.setGender(rs.getString("GENDER"));
 				lst.add(mem);
 			}
 		} catch (SQLException e) {
@@ -157,6 +161,7 @@ public class MemberDAOImpl implements MemberDAO {
 			mem.setTeamId(rs.getString("TEAM_ID"));
 			mem.setGender(rs.getString("GENDER"));
 		}
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -197,7 +202,7 @@ public class MemberDAOImpl implements MemberDAO {
 					.createStatement()
 					.executeQuery(
 							String.format(MemberQuery.SELECT_SOME_MEMBER.toString(), 
-									word)
+									word.split("/")[0], '%'+word.split("/")[1]+'%')
 							)
 					;
 			while(rs.next()) {
@@ -209,10 +214,11 @@ public class MemberDAOImpl implements MemberDAO {
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setSsn(rs.getString("SSN"));
 				mem.setTeamId(rs.getString("TEAM_ID"));
+				mem.setGender(rs.getString("GENDER"));
 				lst.add(mem);
 			}
 			for(int i=0;i<lst.size();i++) {
-				System.out.println(lst.get(i).getName());
+				System.out.println("써치 DAO 끝 " + lst.get(i).getName());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -6,14 +6,18 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>deleteResult</title>
+	<jsp:include page="../common/head.jsp"/>
 </head>
 <body>
-	<%
-		MemberBean mem = new MemberBean(); 
-		mem.setMemId(request.getParameter("userId"));
-		mem.setPassword(request.getParameter("Pass"));
-		MemberServiceImpl.getInstance().deleteMember(mem);
-	%>
-	<a href="../home/userLoginForm.jsp">로그인하러가기</a>
+<jsp:include page = "../common/validationForm.jsp"/>
+<h3>회원탈퇴</h3>
+<form name="deleteForm" id="deleteForm">
+	ID <br>
+	<input type="text" name="userId"><br>
+	Pass <br>
+	<input type="text" name="Pass"><br>
+	<input type="hidden" name="action" value="delete" />
+	<input type="submit" value="제출">
+</form>
 </body>
 </html>

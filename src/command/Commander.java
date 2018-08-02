@@ -25,7 +25,7 @@ public class Commander {
 			cmd = new UpdateCommand(request);
 			break;
 		case LIST :
-			//cmd = new listCommand(domain,action,page);
+			cmd = new ListCommand(request);
 			break;
 		case SEARCH :
 			cmd = new SearchCommand(request);

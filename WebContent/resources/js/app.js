@@ -28,18 +28,6 @@
 })();*/
 
 
-"use strict";
-var router = (()=>{ //()는 함수이름이 없잖아 
-return { move : x=>{  //파라미터가 있을때는 x 없을때는 () 
-	location.href = 
-		x.context + '/'
-		+x.domain
-		+".do?action=" + x.action
-		+"&page=" + x.page
-}}; //키값과 value 키값은 어자피 스트링이니까 자동으로 먹히게함. 
-})(); //이게 (function(){}()) 싱글 쓰레드. 
-
-
 
 var member = (()=>{ //파라미터 봉쇄해놨음. 보안걸림.  클로져를 걸어둔 객체. 
 		var _userId, _ssn, _password,_age,_roll,_teamId,_gender,_subject; //앞에 _를 붙이면 인스턴스변수
@@ -112,11 +100,132 @@ var service = (()=>{
 				}		
 			}
 			 return j;
+		},
+		addClass : (dom,cName)=>{
+			var arr = cName.split(" ");
+			if (arr.indexOf(cName) == -1){
+				dom.className += " " + cName;
+			}
 		}
-		
 	}
-	
 })();
+
+"use strict";
+var router = (()=>{ //()는 함수이름이 없잖아 
+return { move : x=>{  //파라미터가 있을때는 x 없을때는 () 
+	alert(x.context+x.domain+x.action+x.page);
+	location.href = 
+		x.context + '/'
+		+x.domain
+		+".do?action=" + x.action
+		+"&page=" + x.page
+}}; //키값과 value 키값은 어자피 스트링이니까 자동으로 먹히게함. 
+})(); //이게 (function(){}()) 싱글 쓰레드. 
+
+
+var admin = (()=>{
+	return{
+		check : x=>{
+			var isAdmin = confirm('관리자입니까'); //윈도우의 객체.앞이 생략.윈도우가 객체로 만드는것을 bom
+				//function이고 객체다는 교과서
+			if(isAdmin){
+				var password = prompt('관리자 비번을 입력 바랍니다');
+				if(password == 1){
+					router.move({context: x,
+						domain : 'admin',
+						action: 'list',
+						page: 'main'})
+			}
+				else{
+				alert('관리자만 접근이 허용됩니다')
+			}	
+			}
+			},
+			main : x=>{
+				service.addClass(
+						 document.getElementById('searchBox'),
+						 'width80pt center'
+					);
+					service.addClass(
+							document.getElementById('searchWord'),
+							'width80px floatRight'
+					);
+					service.addClass(
+							document.getElementById('searchOption'),
+							'floatRight '
+					);
+					service.addClass(
+							document.getElementById('searchBtn'),
+							'floatRight '
+					);
+					service.addClass(
+							document.getElementById('contentBoxTab'),
+							'width90pt center marginTop30px '
+					);
+					service.addClass(
+							document.getElementById('contentBoxMeta'),
+							'bgColorYellow '
+					);
+					
+					for(var i of document.querySelectorAll('.username')){
+						service.addClass(
+								i,
+								'cursor fontColorBlue'
+								);
+							i.style.color = 'blue';
+							i.style.cursor = 'pointer';
+							i.addEventListener('click',function(){
+							location.href= x+'/admin.do?action=retrieve&page=memberDetail&userid='
+								+this.getAttribute('id');
+						})
+					}
+
+					//All List의 과거 
+					/* var x = document.querySelectorAll('.username'); //위에 classname 
+					for(i in x){
+						x[i].style.color = 'blue';
+						x[i].style.cursor = 'pointer';
+						x[i].addEventListener('click',function(){
+							alert('클릭'+this.getAttribute('id')); 
+							//자바에서 this는 필드. 여기서는 this가 x[i]를 지칭.근데 function안이 아닌데 this가 어떡해 지칭하는가?
+							//리턴이 스칼라개념으로 움직인다. 
+							//저 위에 x인 집합체로 잡으면 this를 못잡는데..? callback함수(클릭이후 호출하는함수) this는 최초 object
+							//그니까 x[i]가 최초의 함수임 
+						location.href='${ctx}/admin.do?action=retrieve&page=memberDetail&userid='
+								+this.getAttribute('id')
+						});
+					}*/
+					
+					//써치
+					document.getElementById("searchBtn")
+					.addEventListener('click',function (){
+						alert('써치함수 진입함');
+						location.href = (document.getElementById('searchOption').value==='userid')? 
+								x+'/admin.do?action=retrieve&page=memberDetail&userid='
+								+ document.getElementById('searchWord').value
+									: 
+									x+'/admin.do?action=search&page=main&&searchOption='
+									+ document.getElementById('searchOption').value
+									+'&searchWord='
+									+ document.getElementById('searchWord').value
+									;
+					});
+					
+			
+			}
+	};})();
+
+
+
+
+/*var setNode = (()=>{
+	return { json : x=>{ 
+		node.setAttribute('type',x.type);
+		node.setAttribute('name',x.name);
+		node.setAttribute('value',x.value);
+	}};
+})();*/
+
 
 
 /*var member = (()=> {

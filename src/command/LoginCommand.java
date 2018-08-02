@@ -29,7 +29,7 @@ public LoginCommand(HttpServletRequest request) {
 					);
 			if(MemberServiceImpl.getInstance().loginB(mem)){
 				request.setAttribute("match", "TRUE");
-				request.setAttribute("user", 
+				request.getSession().setAttribute("user", 
 						MemberServiceImpl.getInstance()
 						.selectOne(
 								request.getParameter("userid")));

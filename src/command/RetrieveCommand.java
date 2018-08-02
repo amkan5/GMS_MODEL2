@@ -17,8 +17,7 @@ public class RetrieveCommand extends Command {
 	 
 	 @Override
 	public void execute() {
-		 switch(Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
-		 case MEMBER : 
+			 System.out.println("리트리버도 와따아?");
 			 request.setAttribute("member",
 					 MemberServiceImpl.getInstance().selectOne(
 								request.getParameter("userid")		
@@ -28,11 +27,7 @@ public class RetrieveCommand extends Command {
 						request.getParameter("userid")
 						).toString()
 						);*/
-			 System.out.println("아이디검색");
-						break;
-		default:
-			return;
-		 }
+					
 		 super.execute();
 	}
 }
