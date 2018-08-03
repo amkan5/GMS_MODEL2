@@ -166,7 +166,7 @@ var admin = (()=>{
 							document.getElementById('contentBoxMeta'),
 							'bgColorYellow '
 					);
-					
+				
 					for(var i of document.querySelectorAll('.username')){
 						service.addClass(
 								i,
@@ -178,8 +178,22 @@ var admin = (()=>{
 							location.href= x+'/admin.do?action=retrieve&page=memberDetail&userid='
 								+this.getAttribute('id');
 						})
-					}
-
+					};
+					
+					//카운트
+			/*		for(var i of document.querySelectorAll('.pagenumber')){
+						service.addClass(
+								i,
+								'cursor fontColorBlue'
+								);
+						i.style.color = 'blue';
+						i.addEventListener('click',function(){
+							location.href= x+'/admin.do?action=count&page=main&pagenumber=page_'
+							+this.getAttribute('id');
+						})
+					};*/
+					
+					
 					//All List의 과거 
 					/* var x = document.querySelectorAll('.username'); //위에 classname 
 					for(i in x){
@@ -210,6 +224,7 @@ var admin = (()=>{
 									+ document.getElementById('searchWord').value
 									;
 					});
+					
 					
 			
 			}

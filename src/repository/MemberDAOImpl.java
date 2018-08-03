@@ -2,8 +2,10 @@ package repository;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import enums.Domain;
 import enums.MemberQuery;
 import enums.Vendor;
 import domain.ExamBean;
@@ -11,6 +13,8 @@ import domain.MemberBean;
 import domain.ProjectTeamBean;
 import factory.*;
 import pool.DBConstant;
+import tamplate.PstmtQuery;
+import tamplate.QueryTamplate;
 
 public class MemberDAOImpl implements MemberDAO {
 	private static MemberDAO instance = new MemberDAOImpl();
@@ -117,12 +121,12 @@ public class MemberDAOImpl implements MemberDAO {
 			while(rs.next()) {
 				mem = new MemberBean();
 				mem.setAge(rs.getString("AGE"));
-				mem.setMemId(rs.getString("USERID"));
+				mem.setMemId(rs.getString("MEMID"));
 				mem.setName(rs.getString("NAME"));
 				mem.setPassword(rs.getString("PASSWORD"));
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setSsn(rs.getString("SSN"));
-				mem.setTeamId(rs.getString("TEAM_ID"));
+				mem.setTeamId(rs.getString("TEAMID"));
 				mem.setGender(rs.getString("GENDER"));
 				lst.add(mem);
 			}
@@ -153,12 +157,12 @@ public class MemberDAOImpl implements MemberDAO {
 										,word));
 		while(rs.next()) {
 			mem.setAge(rs.getString("AGE"));
-			mem.setMemId(rs.getString("USERID"));
+			mem.setMemId(rs.getString("MEMID"));
 			mem.setName(rs.getString("NAME"));
 			mem.setPassword(rs.getString("PASSWORD"));
 			mem.setRoll(rs.getString("ROLL"));
 			mem.setSsn(rs.getString("SSN"));
-			mem.setTeamId(rs.getString("TEAM_ID"));
+			mem.setTeamId(rs.getString("TEAMID"));
 			mem.setGender(rs.getString("GENDER"));
 		}
 		
@@ -193,7 +197,18 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<MemberBean> selectSome(String word) {
-		List<MemberBean> lst = new ArrayList<>();
+		QueryTamplate q = new PstmtQuery();
+		List<MemberBean> list = new ArrayList<>();
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("column", word.split("/")[0]);
+		map.put("value",word.split("/")[1]);
+		map.put("table",Domain.MEMBER);
+		q.play(map);
+		for(Object s: q.getList()) {
+			list.add((MemberBean)s);
+			}
+		
+		/* 옛날버전 List<MemberBean> lst = new ArrayList<>();
 		MemberBean mem = null;
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, 
@@ -208,12 +223,12 @@ public class MemberDAOImpl implements MemberDAO {
 			while(rs.next()) {
 				mem = new MemberBean();
 				mem.setAge(rs.getString("AGE"));
-				mem.setMemId(rs.getString("USERID"));
+				mem.setMemId(rs.getString("MEMID"));
 				mem.setName(rs.getString("NAME"));
 				mem.setPassword(rs.getString("PASSWORD"));
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setSsn(rs.getString("SSN"));
-				mem.setTeamId(rs.getString("TEAM_ID"));
+				mem.setTeamId(rs.getString("TEAMID"));
 				mem.setGender(rs.getString("GENDER"));
 				lst.add(mem);
 			}
@@ -223,8 +238,8 @@ public class MemberDAOImpl implements MemberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		return lst;
+		}*/
+		return list;
 	}
 	@Override
 	public MemberBean login(MemberBean bean) {
@@ -248,7 +263,7 @@ public class MemberDAOImpl implements MemberDAO {
 								bean.getPassword()));
 				if(rs.next()){
 		                do{  member = new MemberBean();
-		                	 member.setMemId(rs.getString("USERID"));
+		                	 member.setMemId(rs.getString("MEMID"));
 		                	 member.setPassword(rs.getString("PASSWORD"));
 		                	 member.setTeamId(rs.getString("TEAMID"));
 		                	 member.setName(rs.getString("NAME"));

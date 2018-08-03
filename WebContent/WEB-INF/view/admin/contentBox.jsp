@@ -34,6 +34,13 @@
 				<td>${member.teamId}</td>
 			</tr>
 			</c:forEach>
+			<tr id='page'>
+			 <td colspan ="6">
+			 	<%-- 전체 회원수 : ${count} --%>
+			 	  <c:forEach begin="1" end="${count/5}" step="1" var="i">
+			 		<span class="pagenumber" id="page_${i}">${i}</span> 
+			 	</c:forEach>    
+			</tr>
 		</table>
 		
 		</div>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import command.Carrier;
 import command.Sentry;
 import enums.Action;
+import service.MemberServiceImpl;
 
 @WebServlet({"/admin.do"})
 public class AdminController extends HttpServlet {
@@ -28,6 +29,7 @@ public class AdminController extends HttpServlet {
 			break;
 		case LIST :
 			request.getAttribute("list");
+			request.getAttribute("count");
 			Carrier.foward(request, response);
 			break;
 		case RETRIEVE :
@@ -38,6 +40,10 @@ public class AdminController extends HttpServlet {
 			request.getAttribute("list");
 			Carrier.foward(request, response);
 			break;
+		/*case COUNT :
+			request.getAttribute("count");
+			Carrier.foward(request, response);
+			break;*/
 		default:
 			break;
 		}
