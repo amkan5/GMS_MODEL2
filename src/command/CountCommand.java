@@ -14,8 +14,10 @@ public class CountCommand extends Command {
 	}
 	@Override
 	public void execute() {
-		request.setAttribute("count", 
-				String.valueOf(MemberServiceImpl.getInstance().countMember()));
+		System.out.println("카운트커맨드까지 데이터가 왔을까? "+request.getParameter("pagenumber"));
+		
+		/*request.setAttribute("count", 
+				String.valueOf(MemberServiceImpl.getInstance().countMember()));*/
 		
 		super.execute();
 	}

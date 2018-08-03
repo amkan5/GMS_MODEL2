@@ -203,6 +203,7 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("column", word.split("/")[0]);
 		map.put("value",word.split("/")[1]);
 		map.put("table",Domain.MEMBER);
+		System.out.println("dao에서 table: "+Domain.MEMBER);
 		q.play(map);
 		for(Object s: q.getList()) {
 			list.add((MemberBean)s);

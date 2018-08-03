@@ -18,10 +18,11 @@ public class ColumnFinder {
 		}
 		Field[] f = clazz.getDeclaredFields();
 		for (int i=0;i<f.length;i++) {
-			s+=(i!=(f.length-i))?
+			s+=(i!=(f.length-1))?
 					f[i].getName().toUpperCase()+",":
 						f[i].getName().toUpperCase();
 		}
+		System.out.println("column finder : " + s);
 	return s;
 	}
 }

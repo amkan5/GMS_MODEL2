@@ -181,13 +181,13 @@ var admin = (()=>{
 					};
 					
 					//카운트
-			/*		for(var i of document.querySelectorAll('.pagenumber')){
+					/*for(var k of document.querySelectorAll('.pagenumbers')){
 						service.addClass(
-								i,
+								k,
 								'cursor fontColorBlue'
 								);
-						i.style.color = 'blue';
-						i.addEventListener('click',function(){
+						k.style.color = 'blue';
+						k.addEventListener('click',function(){
 							location.href= x+'/admin.do?action=count&page=main&pagenumber=page_'
 							+this.getAttribute('id');
 						})
@@ -224,9 +224,7 @@ var admin = (()=>{
 									+ document.getElementById('searchWord').value
 									;
 					});
-					
-					
-			
+
 			}
 	};})();
 

@@ -34,6 +34,7 @@ public class Commander {
 			cmd = new RetrieveCommand(request);
 			break;
 		case COUNT :
+			cmd = new CountCommand(request);
 			break;
 		case DELETE :
 			cmd = new DeleteCommand(request);

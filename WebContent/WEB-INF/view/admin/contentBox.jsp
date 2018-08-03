@@ -6,9 +6,9 @@
 		<input type="text" id='searchWord' placeholder="검색어 입력"/>
 		<select name="searchSelect" id="searchOption">
 				<option value="option">검색조건</option>
-				<option value="userid">아이디</option>
+				<option value="memid">아이디</option>
 				<option value="name">이름</option>
-				<option value="team_Id">팀명</opsion>
+				<option value="teamId">팀명</opsion>
 			 </select>
 		
 		<!-- get으로보내 보안필요없잖 -->
@@ -37,8 +37,8 @@
 			<tr id='page'>
 			 <td colspan ="6">
 			 	<%-- 전체 회원수 : ${count} --%>
-			 	  <c:forEach begin="1" end="${count/5}" step="1" var="i">
-			 		<span class="pagenumber" id="page_${i}">${i}</span> 
+			 	 <c:forEach begin="1" end="${count/5}" step="1" var="i">
+			 		<span><a class="pagenumbers" id="page_${i}">${i}</a></span> 
 			 	</c:forEach>    
 			</tr>
 		</table>

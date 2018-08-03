@@ -10,6 +10,7 @@ import factory.DatabaseFactory;
 public class PstmtQuery extends QueryTamplate{
 	@Override
 	void initialize() {
+		System.out.println("pstmquery에서 table: " + map.get("table"));
 		map.put("sql", String.format(
 				"SELECT "
 				+ ColumnFinder.find(Domain.MEMBER)
@@ -18,6 +19,7 @@ public class PstmtQuery extends QueryTamplate{
 				+" LIKE ? ",
 				map.get("table"),
 				map.get("column")));
+	
 	}
 
 	@Override
@@ -31,8 +33,8 @@ public class PstmtQuery extends QueryTamplate{
 							(String)map.get("sql"));
 			System.out.println("sql이 잘먹혔을까? " + (String)map.get("sql"));
 			pstmt.setString(1, //0부터안감. 1부터 가는 애임. 
-					"%"+map.get("value").toString()+"%s");
-			System.out.println("sql이 잘먹혔을까? " + (String)map.get("sql"));
+					"%"+map.get("value").toString()+"%");
+			System.out.println("%"+map.get("value").toString()+"%");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -40,10 +40,9 @@ public class AdminController extends HttpServlet {
 			request.getAttribute("list");
 			Carrier.foward(request, response);
 			break;
-		/*case COUNT :
-			request.getAttribute("count");
+		case COUNT :
 			Carrier.foward(request, response);
-			break;*/
+			break;
 		default:
 			break;
 		}
