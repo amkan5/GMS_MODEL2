@@ -8,7 +8,7 @@
 				<option value="option">검색조건</option>
 				<option value="userid">아이디</option>
 				<option value="name">이름</option>
-				<option value="team_Id">팀 명</opsion>
+				<option value="team_Id">팀명</opsion>
 			 </select>
 		
 		<!-- get으로보내 보안필요없잖 -->
