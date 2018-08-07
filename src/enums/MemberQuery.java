@@ -40,7 +40,7 @@ public enum MemberQuery {
 					+ "ROWNUM RNUM, "
 					+ "A.* "
 					+ "FROM MEMBER A)B "
-					+ "WHERE B.RNUM BETWEEN 1 AND 5";
+					+ "WHERE B.RNUM BETWEEN %s AND %s";
 			
 			/*query = "SELECT "
 					+ "MEMID ,"

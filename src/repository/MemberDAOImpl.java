@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import enums.Domain;
 import enums.MemberQuery;
@@ -286,5 +287,50 @@ public class MemberDAOImpl implements MemberDAO {
 			e.printStackTrace();
 		}*/
 		return member;
+	}
+	@Override
+	public List<MemberBean> selectList(Map<?, ?> param) {
+		List<MemberBean> list = new ArrayList<>();
+		/*
+		QueryTamplate q = new PstmtQuery();
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("column", "");
+		map.put("value","");
+		map.put("table",Domain.MEMBER);
+		System.out.println("dao에서 table: "+Domain.MEMBER);
+		q.play(map);
+		for(Object s: q.getList()) {
+			list.add((MemberBean)s);
+			} 걍 팩토리로 할래 귀찮아 */
+		MemberBean mem = null;
+		try {
+			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, 
+					DBConstant.USERNAME, DBConstant.PASSWORD)
+					.getConnection()
+					.createStatement()
+					.executeQuery(String.format(
+							MemberQuery.SELECT_ALL_MEMBER.toString(), 
+							param.get("beginRow"),
+							param.get("endRow")
+							));
+	
+			while(rs.next()) {
+				mem = new MemberBean();
+				mem.setAge(rs.getString("AGE"));
+				mem.setMemId(rs.getString("MEMID"));
+				mem.setName(rs.getString("NAME"));
+				mem.setPassword(rs.getString("PASSWORD"));
+				mem.setRoll(rs.getString("ROLL"));
+				mem.setSsn(rs.getString("SSN"));
+				mem.setTeamId(rs.getString("TEAMID"));
+				mem.setGender(rs.getString("GENDER"));
+				list.add(mem);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("dao까지 왔는가 : " +  list.toString());
+		return list;
 	}
 }

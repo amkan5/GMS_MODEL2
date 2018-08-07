@@ -31,7 +31,6 @@ public class PstmtQuery extends QueryTamplate{
 					.getConnection()
 					.prepareStatement(
 							(String)map.get("sql"));
-			System.out.println("sql이 잘먹혔을까? " + (String)map.get("sql"));
 			pstmt.setString(1, //0부터안감. 1부터 가는 애임. 
 					"%"+map.get("value").toString()+"%");
 			System.out.println("%"+map.get("value").toString()+"%");

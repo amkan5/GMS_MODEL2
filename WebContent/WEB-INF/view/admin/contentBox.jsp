@@ -37,9 +37,17 @@
 			<tr id='page'>
 			 <td colspan ="6">
 			 	<%-- 전체 회원수 : ${count} --%>
-			 	 <c:forEach begin="1" end="${count/5}" step="1" var="i">
-			 		<span><a class="pagenumbers" id="page_${i}">${i}</a></span> 
-			 	</c:forEach>    
+			 	<ul class="pageBox">
+			 	 <c:forEach begin="${beginPage}" end="${endPage}" step="1" varStatus="i"> 
+			 		<li>
+			 		<span><a class="pageNums" id="${i.index}" >${i.index}</a></span> 
+			 		</li>
+			 		</c:forEach> 
+			 		<c:if test="${existNext}">  
+			 		<li>다음▶</li>
+			 		</c:if>
+			 	</ul>
+			 	   
 			</tr>
 		</table>
 		

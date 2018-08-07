@@ -1,6 +1,7 @@
 package service;
 import domain.*;
 import java.util.List;
+import java.util.Map;
 
 import com.sun.swing.internal.plaf.metal.resources.metal;
 
@@ -15,4 +16,5 @@ public interface MemberService {
 	public void deleteMember(MemberBean member);
 	public boolean loginB(MemberBean bean); 
 	public MemberBean login(MemberBean bean);
+	public List<MemberBean> getList(Map<?,?> param); //와일드카드,아스타 
 }

@@ -1,6 +1,8 @@
 package service;
 import domain.*;
 import java.util.List;
+import java.util.Map;
+
 import domain.MemberBean;
 import repository.MemberDAOImpl;
 public class MemberServiceImpl implements MemberService {
@@ -56,4 +58,13 @@ public class MemberServiceImpl implements MemberService {
 	public MemberBean login(MemberBean bean) {
 		return MemberDAOImpl.getInstance().login(bean);
 	}
+	@Override
+	public List<MemberBean> getList(Map<?, ?> param) {
+		String beginRow = (String) param.get("beginRow");
+		String endRow = (String) param.get("endRow");
+		System.out.println("memberservice 시작행: "+ beginRow );
+		System.out.println("memberservice 끝행: "+ endRow );
+		return MemberDAOImpl.getInstance().selectList(param); 
+	}
+
 }

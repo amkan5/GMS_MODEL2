@@ -181,17 +181,17 @@ var admin = (()=>{
 					};
 					
 					//카운트
-					/*for(var k of document.querySelectorAll('.pagenumbers')){
+					for(var k of document.querySelectorAll('.pageNums')){
 						service.addClass(
 								k,
 								'cursor fontColorBlue'
 								);
 						k.style.color = 'blue';
 						k.addEventListener('click',function(){
-							location.href= x+'/admin.do?action=count&page=main&pagenumber=page_'
+							location.href= x+'/admin.do?action=list&page=main&pageNum='
 							+this.getAttribute('id');
 						})
-					};*/
+					};
 					
 					
 					//All List의 과거 
