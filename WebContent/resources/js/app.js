@@ -193,6 +193,29 @@ var admin = (()=>{
 						})
 					};
 					
+					for(var k of document.querySelectorAll('.pageBlocks')){
+						service.addClass(
+								k,
+								'cursor fontColorBlue'
+								);
+						k.style.color = 'blue';
+						k.addEventListener('click',function(){
+							location.href= x+'/admin.do?action=list&page=main&pageNum='
+							+this.getAttribute('id');
+						})
+					};
+					
+					//넥스트 이전버전
+					/*document.getElementById("nextBlock")
+					.addEventListener('click',()=>{ //function()을 바꿔줌 
+						location.href=x+'/admin.do?action=list&page=main&pageNum='
+						;
+					})
+					document.getElementById("prevBlock")
+					.addEventListener('click',()=>{ //function()을 바꿔줌 
+						location.href=x+'/admin.do?action=list&page=main&pageNum='
+						;
+					})*/
 					
 					//All List의 과거 
 					/* var x = document.querySelectorAll('.username'); //위에 classname 

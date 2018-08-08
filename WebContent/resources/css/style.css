@@ -22,11 +22,12 @@
 .pageBox{
 	list-style : none;
 	padding : 0;
-	margin: 0;
+	margin: 10px;
 }
 .pageBox li{
-	display:inline;
+	display: inline;
 } 
+
 body{
    font-family: 'Malgun Gothic', 'Verdana';
    background-color: #d1d1d1;
