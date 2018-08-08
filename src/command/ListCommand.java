@@ -24,6 +24,7 @@ public class ListCommand extends Command{
 	}
 	@Override
 	public void execute() {
+		 //이제부턴 search
 		System.out.println("리스트진입한다아");
 		Map<String, Object> paramMap = new HashMap<>();
 		String pageNumber = request.getParameter("pageNum");
