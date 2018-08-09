@@ -16,16 +16,13 @@ public class Commander {
 			cmd = new MoveCommand(request);
 			break;
 		case JOIN : 
-			cmd = new CreateCommand(request);
+			cmd = new AddCommand(request);
 			break;
 		case LOGIN :
 			cmd = new LoginCommand(request);
 			break;
-		case UPDATE :
-			cmd = new UpdateCommand(request);
-			break;
-		case LIST :
-			cmd = new ListCommand(request);
+		case MODIFY :
+			cmd = new ModifyCommand(request);
 			break;
 		case SEARCH :
 			cmd = new SearchCommand(request);
@@ -36,8 +33,8 @@ public class Commander {
 		case COUNT :
 			cmd = new CountCommand(request);
 			break;
-		case DELETE :
-			cmd = new DeleteCommand(request);
+		case REMOVE :
+			cmd = new RemoveCommand(request);
 			break;
 		default:
 			break;

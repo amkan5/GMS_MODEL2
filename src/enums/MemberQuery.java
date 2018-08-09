@@ -1,8 +1,13 @@
 package enums;
 
-public enum MemberQuery {
-	LOGIN, INSERT_MEMBER, COUNT_MEMBER, UPDATE_MEMBER, DELETE_MEMBER,
-	SELECT_ALL_MEMBER, SELECT_ONE_MEMBER, SELECT_ONE_TEAM, SELECT_SOME_MEMBER;
+import tamplate.ColumnFinder;
+
+public enum MemberQuery { 
+	INSERT, 
+	LIST,SEARCH,RETRIEVE,COUNT,
+	UPDATE,
+	DELETE,
+	LOGIN;
 	@Override //컨트롤+스페이스 toSpring
 			 // 얘가 상수처리하는것보다 조금 더 느리긴한데 뺵뺵한거임. 
 	public String toString() {
@@ -10,82 +15,66 @@ public enum MemberQuery {
 		switch (this) {
 		case LOGIN :
 			query = "SELECT "
-					+"MEMID, PASSWORD, TEAMID, NAME, AGE, ROLL,GENDER FROM MEMBER "+
-					"WHERE MEMID LIKE '%s' "
-					+"AND PASSWORD LIKE '%s' ";
+					+ColumnFinder.find(Domain.MEMBER)
+					+" FROM MEMBER "
+					+" WHERE MEMID LIKE ? "
+					+" AND PASSWORD LIKE ? ";
 			break;
-		case INSERT_MEMBER :
+		case INSERT:
 			query = "INSERT INTO MEMBER( "
-					+"MEMID, PASSWORD, NAME, SSN, AGE, GENDER, SUBJECT, ROLL, TEAMID ) " //섭젝트 쿼리쳐야해
-					+"VALUES "
-					+"( '%s', '%s', '%s', '%s' ,'%s' , '%s', '%s', '%s' ,'%s' )";
+					+ ColumnFinder.find(Domain.MEMBER) //섭젝트 쿼리쳐야해
+					+ " ) "
+					+" VALUES "
+					+"( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 			break;
-		case COUNT_MEMBER : 
+		case COUNT : 
 			query = "SELECT COUNT(*) AS count FROM MEMBER";
 			break;
-		case UPDATE_MEMBER : 
-			query = "UPDATE MEMBER SET PASSWORD = '%s',"
-					+ "ROLL= '%s', TEAMID = '%s' "
-					+ "WHERE MEMID LIKE '%s' "
-					+ "AND PASSWORD LIKE '%s'";
+		case UPDATE : 
+			query = "UPDATE MEMBER SET %s = ? "
+					+ "WHERE MEMID LIKE ? ";
 			break;
-		case DELETE_MEMBER : 
+		case DELETE : 
 			query = "DELETE FROM MEMBER "
 					+ "WHERE MEMID LIKE '%s' "
 					+ "AND PASSWORD LIKE '%s'";
 			break;
-		case SELECT_ALL_MEMBER :
+		case LIST :
 			query = "SELECT B.* "
 					+ "FROM (SELECT "
 					+ "ROWNUM RNUM, "
 					+ "A.* "
-					+ "FROM MEMBER A)B "
-					+ "WHERE B.RNUM BETWEEN %s AND %s";
-			
-			/*query = "SELECT "
-					+ "MEMID ,"
-					+ "NAME,"
-					+ "AGE,"
-					+ "ROLL,"
-					+ "PASSWORD,"
-					+ "SSN,"
-					+ "TEAMID,"
-					+ "GENDER"
-					+ " FROM MEMBER";*/
+					+ "FROM MEMBER A " //"FROM MEMBER A "
+					+ "ORDER BY RNUM ) B "
+					+ "WHERE B.RNUM BETWEEN ? AND ?";
+					//+ "WHERE B.RNUM BETWEEN %s AND %s"
 			break;
-		case SELECT_ONE_MEMBER :
+		case SEARCH :
+			query = "SELECT B.* "
+					+ "FROM (SELECT "
+					+ "ROWNUM RNUM, "
+					+ "A.* "
+					+ "FROM MEMBER A "
+					+ "WHERE %s LIKE ? "
+					+ "ORDER BY SEQ ) B "
+					+ "WHERE B.RNUM BETWEEN ? AND ?";
+			break;
+		case RETRIEVE :
 			query = "SELECT "
-					+ "MEMID, "
-					+ "NAME,"
-					+ "AGE, "
-					+ "ROLL, "
-					+ "PASSWORD, "
-					+ "SSN, "
-					+ "TEAMID, "
-					+ "GENDER "
+					+ ColumnFinder.find(Domain.MEMBER)
 					+ " FROM MEMBER "
-					+ "WHERE MEMID LIKE '%s'";
+					+ " WHERE USERID "
+					+ " LIKE ? ";
 			break;
-		case SELECT_ONE_TEAM :
+			
+	/*	case SEARCH :
 			query = "SELECT "
 					+ "TEAMID,"
 					+ "TEAM_NAME "
 					+ "FROM PROJECT_TEAM "
 					+ "WHERE TEAM_NAME LIKE '%s'";
-					break;
-		case SELECT_SOME_MEMBER :
-			query =  "SELECT "
-					+ "MEMID, "
-					+ "NAME,"
-					+ "AGE, "
-					+ "ROLL, "
-					+ "PASSWORD, "
-					+ "SSN, "
-					+ "TEAMID, "
-					+ "GENDER "
-					+ " FROM MEMBER "
-					+ "WHERE %s LIKE '%s'";
-			break;
+					break;*/
+		
 		}
 		// TODO Auto-generated method stub
 		return query;

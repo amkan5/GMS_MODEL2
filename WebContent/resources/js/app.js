@@ -122,10 +122,16 @@ return { move : x=>{  //파라미터가 있을때는 x 없을때는 ()
 }}; //키값과 value 키값은 어자피 스트링이니까 자동으로 먹히게함. 
 })(); //이게 (function(){}()) 싱글 쓰레드. 
 
-
-var admin = (()=>{
+var common = (()=>{
 	return{
-		check : x=>{
+		main : x=>{
+			//메뉴박스에 있던아이 
+			document.getElementById('moveToAdmin') //# 빼먹지말자 
+			.addEventListener('click',function(){
+				/*router.move({context: x,
+					domain : 'admin',
+					action: 'search',
+					page: 'main'})*/
 			var isAdmin = confirm('관리자입니까'); //윈도우의 객체.앞이 생략.윈도우가 객체로 만드는것을 bom
 				//function이고 객체다는 교과서
 			if(isAdmin){
@@ -133,14 +139,20 @@ var admin = (()=>{
 				if(password == 1){
 					router.move({context: x,
 						domain : 'admin',
-						action: 'list',
+						action: 'search',
 						page: 'main'})
 			}
 				else{
 				alert('관리자만 접근이 허용됩니다')
 			}	
 			}
-			},
+			});	 	
+		}
+	}
+})();
+
+var admin = (()=>{
+	return{
 			main : x=>{
 				service.addClass(
 						 document.getElementById('searchBox'),
@@ -166,7 +178,9 @@ var admin = (()=>{
 							document.getElementById('contentBoxMeta'),
 							'bgColorYellow '
 					);
-				
+					
+					
+					
 					for(var i of document.querySelectorAll('.username')){
 						service.addClass(
 								i,

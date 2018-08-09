@@ -14,57 +14,39 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void createMember(MemberBean member) {
-		MemberDAOImpl.getInstance().insertMember(member);
-	}
-
-	@Override
-	public void updateMember(MemberBean member) {
-		MemberDAOImpl.getInstance().updateMember(member);
-		System.out.println("updateS : " + member.toString());
-	}
-
-	@Override
-	public void deleteMember(MemberBean member) {	
-		MemberDAOImpl.getInstance().dropMember(member);	
-		System.out.println("deleteS : " + member.toString());
+	public void add(MemberBean member) {
+		// TODO Auto-generated method stub
 		
 	}
-
-
 	@Override
-	public List<MemberBean> list() {
-		return MemberDAOImpl.getInstance().selectAll();
+	public MemberBean retrieve(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	@Override
-	public List<MemberBean> selectSome(String word) {
-		System.out.println("service word : " + word);
-		return MemberDAOImpl.getInstance().selectSome(word);
-	}
-	@Override
-	public MemberBean selectOne(String word) {
-		return MemberDAOImpl.getInstance().selectOne(word);
+	public List<MemberBean> search(Map<?, ?> param) {
+		System.out.println("5. serveice enter");
+		return MemberDAOImpl.getInstance().selectSome(param);
 	}
 	@Override
 	public int countMember() {
-		return MemberDAOImpl.getInstance().countMember();
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	@Override
-	public boolean loginB(MemberBean bean) {
-		System.out.println("service : " + bean.getMemId());
-		return (MemberDAOImpl.getInstance().login(bean)!=null);
+	public void modify(Map<?, ?> param) {
+		// TODO Auto-generated method stub
+		
 	}
 	@Override
-	public MemberBean login(MemberBean bean) {
-		return MemberDAOImpl.getInstance().login(bean);
+	public void remove(MemberBean bean) {
+		// TODO Auto-generated method stub
+		
 	}
 	@Override
-	public List<MemberBean> getList(Map<?, ?> param) {
-		String beginRow = (String) param.get("beginRow");
-		String endRow = (String) param.get("endRow");
-		System.out.println("memberservice 시작행: "+ beginRow );
-		System.out.println("memberservice 끝행: "+ endRow );
-		return MemberDAOImpl.getInstance().selectList(param); 
+	public boolean login(MemberBean bean) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-
+	
 }

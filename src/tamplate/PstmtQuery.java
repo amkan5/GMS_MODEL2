@@ -5,21 +5,25 @@ import java.sql.SQLException;
 
 import domain.MemberBean;
 import enums.Domain;
+import enums.MemberQuery;
 import factory.DatabaseFactory;
 
 public class PstmtQuery extends QueryTamplate{
 	@Override
 	void initialize() {
-		System.out.println("pstmquery에서 table: " + map.get("table"));
-		map.put("sql", String.format(
-				"SELECT "
-				+ ColumnFinder.find(Domain.MEMBER)
-				+" FROM %s "
-				+" WHERE %s "
-				+" LIKE ? ",
-				map.get("table"),
-				map.get("column")));
-	
+		System.out.println("8. pstmquery에서 table: " + map.get("table"));
+		//스위치문 들가야함 ㅎ
+		map.put("sql",
+				(map.get("column")==null)? 
+				String.format(
+						MemberQuery.LIST.toString(),
+						map.get("beginRow"),
+						map.get("endRow"))
+				: 
+				String.format(
+						MemberQuery.SEARCH.toString(),
+						map.get("table"),
+						map.get("column")));
 	}
 
 	@Override
@@ -31,9 +35,23 @@ public class PstmtQuery extends QueryTamplate{
 					.getConnection()
 					.prepareStatement(
 							(String)map.get("sql"));
-			pstmt.setString(1, //0부터안감. 1부터 가는 애임. 
+			pstmt.setString(1, 
+					(map.get("column")==null)?
+					(String) map.get("beginRow")
+					:
 					"%"+map.get("value").toString()+"%");
-			System.out.println("%"+map.get("value").toString()+"%");
+			pstmt.setString(2, 
+					(map.get("column")==null)?
+					(String) map.get("endRow")
+					:
+					(String) map.get("beginRow"));
+			pstmt.setString(3, 
+					(map.get("column")==null)?
+					""
+					:
+					(String) map.get("endRow")
+					);
+			System.out.println("9.starPlay까지 끝남: ");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

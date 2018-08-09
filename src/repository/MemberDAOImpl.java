@@ -42,8 +42,8 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 	}
 	@Override
-	public void insertMember(MemberBean bean) {
-		try {//void일때는 int로 받기. select나 이런건 
+	public void insert(MemberBean bean) {
+		/*try {//void일때는 int로 받기. select나 이런건 
 			 int rs = DatabaseFactory.createDatabase(Vendor.ORACLE, //애플.아이폰 이런느낌
 						DBConstant.USERNAME, 
 						DBConstant.PASSWORD)
@@ -63,12 +63,12 @@ public class MemberDAOImpl implements MemberDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+	*/
 	}
 	
 	@Override
-	public void updateMember(MemberBean bean) {
-		try {
+	public void update(Map<?, ?> param) {
+		/*try {
 			System.out.println("updateD1 : " + bean.toString());
 			System.out.println(MemberQuery.UPDATE_MEMBER.toString());
 			System.out.println(bean.getPassword().split("/")[1]);
@@ -85,12 +85,12 @@ public class MemberDAOImpl implements MemberDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	@Override
-	public void dropMember(MemberBean bean) {
-		try {
+	public void delete(MemberBean bean) {
+/*		try {
 			System.out.println("delteD1 : " + bean.toString());
 			DatabaseFactory.createDatabase(Vendor.ORACLE, 
 					DBConstant.USERNAME, DBConstant.PASSWORD)
@@ -103,10 +103,10 @@ public class MemberDAOImpl implements MemberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 
-	@Override
+/*	@Override
 	public List<MemberBean> selectAll() {
 		List<MemberBean> lst = new ArrayList<>();
 		MemberBean mem = null;
@@ -135,19 +135,19 @@ public class MemberDAOImpl implements MemberDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(countMember()==lst.size()) {
+		if(count()==lst.size()) {
 			System.out.println("전체 리스트 인원 호출 성공");
 		}
 		for(int i=0;i<lst.size();i++) {
 			System.out.println(lst.get(i).getName());
 		}
 		return lst;
-	}
+	}*/
 
 	@Override
 	public MemberBean selectOne(String word) {
 		MemberBean mem = new MemberBean();		
-		try {
+	/*	try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, 
 						DBConstant.USERNAME, DBConstant.PASSWORD)
 						.getConnection()
@@ -170,14 +170,14 @@ public class MemberDAOImpl implements MemberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		return mem;
 	}
 
 	@Override
-	public int countMember() {
+	public int count() {
 		int count = 0;
-		try {
+	/*	try {
 			ResultSet rs = DatabaseFactory.createDatabase(
 					Vendor.ORACLE,
 					DBConstant.USERNAME, DBConstant.PASSWORD)
@@ -192,66 +192,33 @@ public class MemberDAOImpl implements MemberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		return count;
 	}
 
 	@Override
-	public List<MemberBean> selectSome(String word) {
+	public List<MemberBean> selectSome(Map<?, ?> param) {
 		QueryTamplate q = new PstmtQuery();
 		List<MemberBean> list = new ArrayList<>();
 		HashMap<String,Object> map = new HashMap<>();
-		map.put("column", word.split("/")[0]);
-		map.put("value",word.split("/")[1]);
+		map.put("beginRow",param.get("beginRow"));
+		map.put("endRow",param.get("endRow"));
+		map.put("column", param.get("column"));
+		map.put("value",param.get("value"));
+		//6번 syso
+		System.out.println("6.멤버 dao column : " + map.get("column"));
 		map.put("table",Domain.MEMBER);
-		System.out.println("dao에서 table: "+Domain.MEMBER);
+		System.out.println("7. dao에서 table: "+Domain.MEMBER);
 		q.play(map);
 		for(Object s: q.getList()) {
 			list.add((MemberBean)s);
 			}
-		
-		/* 옛날버전 List<MemberBean> lst = new ArrayList<>();
-		MemberBean mem = null;
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, 
-					DBConstant.USERNAME, DBConstant.PASSWORD)
-					.getConnection()
-					.createStatement()
-					.executeQuery(
-							String.format(MemberQuery.SELECT_SOME_MEMBER.toString(), 
-									word.split("/")[0], '%'+word.split("/")[1]+'%')
-							)
-					;
-			while(rs.next()) {
-				mem = new MemberBean();
-				mem.setAge(rs.getString("AGE"));
-				mem.setMemId(rs.getString("MEMID"));
-				mem.setName(rs.getString("NAME"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setTeamId(rs.getString("TEAMID"));
-				mem.setGender(rs.getString("GENDER"));
-				lst.add(mem);
-			}
-			for(int i=0;i<lst.size();i++) {
-				System.out.println("써치 DAO 끝 " + lst.get(i).getName());
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		System.out.println("10. dao 끝 : " + list.toString());
 		return list;
 	}
 	@Override
 	public MemberBean login(MemberBean bean) {
 		MemberBean member = null;
-		/*try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			  try {
-				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe"
-				            ,"KAN","1253");
-				Statement stmt = conn.createStatement();*/
 		System.out.println("DAO1 " + bean.getMemId());
 		try {	ResultSet rs = DatabaseFactory.createDatabase(
 						Vendor.ORACLE, 
@@ -278,59 +245,7 @@ public class MemberDAOImpl implements MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*	} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			};
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		return member;
 	}
-	@Override
-	public List<MemberBean> selectList(Map<?, ?> param) {
-		List<MemberBean> list = new ArrayList<>();
-		/*
-		QueryTamplate q = new PstmtQuery();
-		HashMap<String,Object> map = new HashMap<>();
-		map.put("column", "");
-		map.put("value","");
-		map.put("table",Domain.MEMBER);
-		System.out.println("dao에서 table: "+Domain.MEMBER);
-		q.play(map);
-		for(Object s: q.getList()) {
-			list.add((MemberBean)s);
-			} 걍 팩토리로 할래 귀찮아 */
-		MemberBean mem = null;
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, 
-					DBConstant.USERNAME, DBConstant.PASSWORD)
-					.getConnection()
-					.createStatement()
-					.executeQuery(String.format(
-							MemberQuery.SELECT_ALL_MEMBER.toString(), 
-							param.get("beginRow"),
-							param.get("endRow")
-							));
-	
-			while(rs.next()) {
-				mem = new MemberBean();
-				mem.setAge(rs.getString("AGE"));
-				mem.setMemId(rs.getString("MEMID"));
-				mem.setName(rs.getString("NAME"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setTeamId(rs.getString("TEAMID"));
-				mem.setGender(rs.getString("GENDER"));
-				list.add(mem);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("dao까지 왔는가 : " +  list.toString());
-		return list;
-	}
+
 }

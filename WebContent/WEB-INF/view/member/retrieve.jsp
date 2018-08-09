@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="domain.*" %>
-<%
-	MemberBean user = (MemberBean)request.getAttribute("user");
-%>
+<div id="contentBox" style="width:100%"; height:300px;">
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,11 +16,11 @@
 		<tr>
 			<td rowspan="3" colspan="2">프로필사진</td>
 			<td><h2>ID</h2></td>
-			<td><h2>${member.memId}</h2></td>
+			<td><h2>${user.memId}</h2></td>
 		</tr>
 		<tr>
 			<td><h2>이름</h2></td>
-			<td><h2>${member.name}</h2></td>
+			<td><h2>${user.name}</h2></td>
 	
 		</tr>
 		<tr>
@@ -31,20 +29,20 @@
 		</tr>
 		<tr>
 			<td><h2>나이</h2></td>
-			<td><h2>${member.age}</h2></td>
+			<td><h2>${user.age}</h2></td>
 			<td><h2>팀</h2></td>
-			<td><h2>${member.teamId}</h2></td>
+			<td><h2>${user.teamId}</h2></td>
 		</tr>
 		<tr>
 			<td><h2>성별</h2></td>
-			<td><h2>${member.gender}</h2></td>
+			<td><h2>${user.gender}</h2></td>
 			<td><h2>역할</h2></td>
-			<td><h2>${member.roll}</h2></td>
+			<td><h2>${user.roll}</h2></td>
 		</tr>
 	</table>
 <h3><a id="myPageMoveToUpdate">UPDATE FORM</a></h3>
 <h3><a id="myPageMoveToDelete">DELETE FORM</a></h3>
-
+</div>
 <script>
 document.getElementById('myPageMoveToUpdate')
 .addEventListener('click',function(){

@@ -27,11 +27,11 @@ public LoginCommand(HttpServletRequest request) {
 			mem.setPassword(
 					request.getParameter("password")
 					);
-			if(MemberServiceImpl.getInstance().loginB(mem)){
+			if(MemberServiceImpl.getInstance().login(mem)){
 				request.setAttribute("match", "TRUE");
 				request.getSession().setAttribute("user", 
 						MemberServiceImpl.getInstance()
-						.selectOne(
+						.retrieve(
 								request.getParameter("userid")));
 				System.out.println("login : 성공");
 			}else {

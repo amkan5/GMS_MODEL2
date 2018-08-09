@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Carrier;
-import command.Sentry;
-import command.ListCommand;
+import command.Receiver;
+import command.SearchCommand;
 import domain.*;
 import enums.Action;
 import service.*;
@@ -26,28 +26,24 @@ public class MemberController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		System.out.println("MemberController Enter!!");
-		Sentry.init(request);
-		System.out.println("액션: "+Sentry.cmd.getAction());
+		Receiver.init(request);
+		System.out.println("액션: "+Receiver.cmd.getAction());
 /*		String action = request.getParameter("action");
 		String page = request.getParameter("page");*/
 		List<MemberBean> lst = null;
 		MemberBean mem = null;
-		switch(Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
-		case MOVE : 
-		/*	request.getRequestDispatcher("/WEB-INF/view/member/"+page+".jsp")
-			.forward(request, response);*/
-			Carrier.foward(request, response);
-			break;
-		case JOIN: 
+		switch(Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
+		
+		case ADD: 
 			Carrier.redirect(request, response,"/member.do?action=move&page=userLoginForm");
 			//도메인 response는 jsp에 사는애. 스크립트립. 멤버컨트롤러로 다시 진입시켜?
 			System.out.println(mem);
 			break;
-		case UPDATE : 
+		case MODIFY : 
 			System.out.println("컨트롤러-업데이트 진입");
 			Carrier.redirect(request, response,"/member.do?action=move&page=my_page");
 			break;
-		case DELETE : 
+		case REMOVE : 
 			Carrier.redirect(request, response, "/member.do?action=move&page=userLoginForm");
 			break;
 		case SEARCH : 
@@ -56,14 +52,11 @@ public class MemberController extends HttpServlet {
 		case RETRIEVE : //하나만 가져오는s거 
 			Carrier.redirect(request, response, "/member.do?action=move&page=searchIdResult");
 			break;
-		/*case LIST : 
-			System.out.println("member의 리스트");
-			request.getAttribute("list");
-			Carrier.foward(request, response);
-			response.sendRedirect(request.getContextPath()
-					+"/member.do?action=move&page=memberlist"
-					);
-			break;*/
+		case MOVE : 
+			/*	request.getRequestDispatcher("/WEB-INF/view/member/"+page+".jsp")
+				.forward(request, response);*/
+				Carrier.foward(request, response);
+				break;
 		case COUNT : 
 			System.out.println(
 					MemberServiceImpl.getInstance().countMember()

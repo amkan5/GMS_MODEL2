@@ -18,7 +18,7 @@ document.getElementById('moveLoginForm')
  router.move({context:'${ctx}',
 			domain : 'member',
 			action: 'move',
-			page: 'userLoginForm'})
+			page: 'login'})
 			});
 		 
 
@@ -34,7 +34,7 @@ document.getElementById('moveLoginForm')
   router.move({context:'${ctx}',
 	  			domain : 'member',
 	  			action: 'move',
-	  			page: 'joinForm'})
+	  			page: 'add'})
  				});
 
 

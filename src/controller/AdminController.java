@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Carrier;
-import command.Sentry;
+import command.Receiver;
 import enums.Action;
 import service.MemberServiceImpl;
 
@@ -21,15 +21,10 @@ public class AdminController extends HttpServlet {
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		Sentry.init(request);
-		switch(Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
+		Receiver.init(request);
+		switch(Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		case MOVE : 
 			System.out.println("어드민므브");
-			Carrier.foward(request, response);
-			break;
-		case LIST :
-			request.getAttribute("list");
-			request.getAttribute("count");
 			Carrier.foward(request, response);
 			break;
 		case RETRIEVE :

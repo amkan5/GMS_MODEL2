@@ -13,9 +13,9 @@ public class Carrier {
 		try {
 			System.out.println("캐리어진입");
 			request
-			.getRequestDispatcher(Sentry.cmd.getView())
+			.getRequestDispatcher(Receiver.cmd.getView())
 			.forward(request,response);
-			System.out.println(Sentry.cmd.getView());
+			System.out.println(Receiver.cmd.getView());
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

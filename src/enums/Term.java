@@ -1,7 +1,7 @@
 package enums;
 
 public enum Term {
-	WEBPATH,MAIN;
+	WEBPATH,MAIN,COMMON;
 	
 	@Override
 	public String toString() {
@@ -9,7 +9,9 @@ public enum Term {
 		switch (this) {
 		case WEBPATH: term = "/WEB-INF/view/";
 			break;
-		case MAIN : term= "main.jsp"; 
+		case MAIN : term= "/main.jsp"; 
+			break;
+		case COMMON : term = "/common/";
 			break;
 		default:
 			break;

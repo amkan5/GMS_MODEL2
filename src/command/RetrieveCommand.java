@@ -19,7 +19,7 @@ public class RetrieveCommand extends Command {
 	public void execute() {
 			 System.out.println("리트리버도 와따아?");
 			 request.setAttribute("member",
-					 MemberServiceImpl.getInstance().selectOne(
+					 MemberServiceImpl.getInstance().retrieve(
 								request.getParameter("userid")		
 					 ));
 			 /*System.out.println(

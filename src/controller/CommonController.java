@@ -36,10 +36,13 @@ public class CommonController extends HttpServlet {
 	/*	HttpSession session = request.getSession(); *///갖고와서 객체를 만드는 관계. 필드에 Session객체가 있오. 그거 하나 준거라 얘는 죽지않음. 
 		/*session.setAttribute(Domain.CONTEXT.toString(), 
 				request.getContextPath()); *///ctx
+		
 		request.getRequestDispatcher(
-				Term.WEBPATH.toString()+Term.MAIN.toString())
+				Term.WEBPATH.toString()
+				+request.getServletPath().split(".d")[0]
+				+Term.MAIN.toString())
 				.forward(request,response);
-		System.out.println("커먼에 들어옴");
+		
 		/*request.getRequestDispatcher("/WEB-INF/view/main.jsp")
 		.forward(request, response);*/
 	}

@@ -13,15 +13,17 @@
 <div id="wrapper">
 	<div id="header">
 		<jsp:include page="titleBox.jsp"/>
-		<jsp:include page="menu.jsp"/>
+		<jsp:include page="../common/menuBox.jsp"/>
 	</div><!-- header end -->
 	<div id="content">
-		<jsp:include page="contentBox.jsp"/>
+		<jsp:include page="../member/search.jsp"/>
 	</div>
 	<div id="footer">
 	   <jsp:include page="../common/footerBox.jsp"/>
 	</div>
 </div>
-	
+<script>
+	admin.main('${ctx}');
+</script>
 </body>
 </html>

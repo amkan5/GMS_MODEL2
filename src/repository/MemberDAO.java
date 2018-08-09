@@ -5,14 +5,13 @@ import java.util.Map;
 import domain.ExamBean;
 import domain.MemberBean;
 public interface MemberDAO {
-	public void insertMember(MemberBean member);
-	public List<MemberBean> selectAll();
-	public List<MemberBean> selectSome(String word);
+	public void insert(MemberBean member);
+	public List<MemberBean> selectSome(Map<?, ?> param);
 	public MemberBean selectOne(String word);
-	public int countMember();
-	public void updateMember(MemberBean member);
-	public void dropMember(MemberBean member);
+	public int count();
+	public void update(Map<?, ?> param);
+	public void delete(MemberBean member);
 	public MemberBean login(MemberBean bean);
-	public List<MemberBean> selectList(Map<?, ?> param);//비번떔시 객체던짐
+
 
 }
