@@ -7,11 +7,11 @@ import domain.MemberBean;
 import enums.Domain;
 import enums.MemberQuery;
 import factory.DatabaseFactory;
-
+ //기본 ㅋㅋ_ㅋ 
 public class PstmtQuery extends QueryTamplate{
 	@Override
 	void initialize() {
-		System.out.println("8. pstmquery에서 table: " + map.get("table"));
+		System.out.println("8. pstmquery에서 table: " + map.get("domain"));
 		//스위치문 들가야함 ㅎ
 		map.put("sql",
 				(map.get("column")==null)? 

@@ -9,7 +9,7 @@ import lombok.Data;
 import service.MemberServiceImpl;
 
 @Data
-public class Pagination implements Proxy{
+public class Pagination implements Capable{
 	 int pageSize ,
 	 blockSize ,	
 	 beginPage ,

@@ -12,7 +12,6 @@ public LoginCommand(HttpServletRequest request) {
 	setDomain(request.getServletPath().
 			substring(1,request.getServletPath().indexOf(".")));
 	setAction(request.getParameter("action"));
-	setPage("my_page");
 	this.execute(); //view 
 }
 @Override
@@ -21,8 +20,7 @@ public LoginCommand(HttpServletRequest request) {
 		System.out.println("로그인커맨드 진입");
 			MemberBean mem = new MemberBean();
 			mem.setMemId(
-					request.getParameter("userid") //커맨드에 있는 리퀘스트.
-												 
+					request.getParameter("userid") //커맨드에 있는 리퀘스트.							 
 					); 
 			mem.setPassword(
 					request.getParameter("password")

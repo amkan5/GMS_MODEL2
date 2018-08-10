@@ -28,10 +28,13 @@ public enum MemberQuery {
 					+"( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 			break;
 		case COUNT : 
-			query = "SELECT COUNT(*) AS count FROM MEMBER";
+			query = "SELECT COUNT(*) AS COUNT FROM MEMBER";
 			break;
 		case UPDATE : 
-			query = "UPDATE MEMBER SET %s = ? "
+			query = "UPDATE MEMBER SET "
+					+ "%s = ?, "
+					+ "%s = ?, "
+					+ "%s = ? "
 					+ "WHERE MEMID LIKE ? ";
 			break;
 		case DELETE : 
@@ -50,13 +53,13 @@ public enum MemberQuery {
 					//+ "WHERE B.RNUM BETWEEN %s AND %s"
 			break;
 		case SEARCH :
-			query = "SELECT B.* "
+			query = "SELECT B.* " // COUNT(*) AS COUNT
 					+ "FROM (SELECT "
 					+ "ROWNUM RNUM, "
 					+ "A.* "
 					+ "FROM MEMBER A "
 					+ "WHERE %s LIKE ? "
-					+ "ORDER BY SEQ ) B "
+					+ "ORDER BY RNUM ) B "
 					+ "WHERE B.RNUM BETWEEN ? AND ?";
 			break;
 		case RETRIEVE :

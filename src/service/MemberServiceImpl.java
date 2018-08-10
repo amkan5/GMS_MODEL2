@@ -15,13 +15,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public void add(MemberBean member) {
-		// TODO Auto-generated method stub
+		 MemberDAOImpl.getInstance().insert(member);
 		
 	}
 	@Override
 	public MemberBean retrieve(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return  MemberDAOImpl.getInstance().selectOne(id);
 	}
 	@Override
 	public List<MemberBean> search(Map<?, ?> param) {
@@ -30,23 +29,21 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public int countMember() {
-		// TODO Auto-generated method stub
-		return 0;
+		return MemberDAOImpl.getInstance().count();
 	}
 	@Override
 	public void modify(Map<?, ?> param) {
-		// TODO Auto-generated method stub
+		MemberDAOImpl.getInstance().update(param);
 		
 	}
 	@Override
 	public void remove(MemberBean bean) {
-		// TODO Auto-generated method stub
+		MemberDAOImpl.getInstance().delete(bean);
 		
 	}
 	@Override
 	public boolean login(MemberBean bean) {
-		// TODO Auto-generated method stub
-		return false;
+		return (MemberDAOImpl.getInstance().login(bean)!=null);
 	}
 	
 }

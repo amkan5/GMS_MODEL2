@@ -202,7 +202,7 @@ var admin = (()=>{
 								);
 						k.style.color = 'blue';
 						k.addEventListener('click',function(){
-							location.href= x+'/admin.do?action=list&page=main&pageNum='
+							location.href= x+'/admin.do?action=search&page=main&pageNum='
 							+this.getAttribute('id');
 						})
 					};
@@ -214,7 +214,7 @@ var admin = (()=>{
 								);
 						k.style.color = 'blue';
 						k.addEventListener('click',function(){
-							location.href= x+'/admin.do?action=list&page=main&pageNum='
+							location.href= x+'/admin.do?action=search&page=main&pageNum='
 							+this.getAttribute('id');
 						})
 					};
