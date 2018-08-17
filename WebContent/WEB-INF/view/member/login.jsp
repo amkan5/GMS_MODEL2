@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!doctype html>
-<html lang="en">
-	<jsp:include page="../common/head.jsp"/>
-<body>
-<%--  <jsp:include page = "../common/validationForm.jsp"/>
-  --%>
-	<div class="margin-200-auto text-align width-200 border">
+	<div id="content" style="width:100% height:300px">
+ <div class="margin-200-auto text-align width-200 border"> 
 	<h2 class="text-align">사용자 로그인</h2>	
 		<form id="loginForm" name="LoginForm"> 
 			ID <br>
@@ -15,10 +10,11 @@
 			Pass <br>
 			<input type="text" name="password" ><br>
 			<input type="hidden" name="action" value="login" />
-			<input type ="hidden" name="page" value="my_page" />
+<!-- 			<input type ="hidden" name="page" value="my_page" /> -->
 			<input id="loginFormBtn" type="button" value="제출" />
 		</form><br>
 	</div>
+	  </div> 
 	<script>
    	document.getElementById("loginFormBtn")
 	.addEventListener('click',function (){ //click은 이벤트. call back 함수
@@ -29,6 +25,7 @@
 	    var x = service.nullChecker(
 				{userid:form.userid.value,password:form.password.value});
 		if(x.checker){
+			alert('로그인한당 !!');
 			form.action = "${ctx}/member.do";
 			form.method = "post";
 			form.submit(); 
@@ -42,7 +39,6 @@
 	   	} */
 	});
 
-   	
 	</script>
 </body>
 </html>

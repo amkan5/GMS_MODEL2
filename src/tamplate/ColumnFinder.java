@@ -1,6 +1,7 @@
 package tamplate;
 
 
+import domain.ImageBean;
 import domain.MemberBean;
 import enums.Domain;
 import java.lang.reflect.Field;
@@ -12,6 +13,8 @@ public class ColumnFinder {
 		switch (dom) {
 		case MEMBER :
 			clazz=MemberBean.class;
+			break;
+		case IMAGE :
 			break;
 		default:
 			break;

@@ -99,17 +99,22 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberBean selectOne(String word) {
 		q = new RetrieveQuery();
 		Map<String, Object> param = new HashMap<>();
+		System.out.println("아이디찾기 dao : "+word);
 		param.put("memId", word);
+		param.put("table", "MEMBER");//나중에 상수처리하기 
 		q.play((HashMap<String, Object>)param);
+		System.out.println("dao : " + q.getO());
 		return (MemberBean) q.getO();
 	}
 
 	@Override
-	public int count() {
+	public int count(Map<?, ?> param) {
 		int count = 0;
+		System.out.println("d. dao 카운트 컬럼왔을까" + param.get("column"));
 		q = new CountQuery();
-		q.play();
+		q.play((HashMap<String, Object>) param);
 		count = q.getNumber();
+		System.out.println("f. 카운트결과값 ");
 		return count;
 	}
 
@@ -135,9 +140,10 @@ public class MemberDAOImpl implements MemberDAO {
 		Map<String, Object> param = new HashMap<>();
 		param.put("memId", bean.getMemId());
 		param.put("password", bean.getPassword());
+		System.out.println("로그인 dao memid " + bean.getMemId());
 		q.play((HashMap<String, Object>) param);
 		member = (MemberBean) q.getO();
-		System.out.println("로그인 member : " + member.toString());
+		//System.out.println("로그인 member : " + member.toString());
 		return member;
 	}
 

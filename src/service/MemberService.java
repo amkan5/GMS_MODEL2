@@ -11,7 +11,7 @@ public interface MemberService {
 	//public List<MemberBean> selectSome(String word);
 	public MemberBean retrieve(String id);
 	public List<MemberBean> search(Map<?,?> param); 
-	public int countMember();
+	public int countMember(Map<?, ?> param);
 	public void modify(Map<?,?> param);
 	public void remove(MemberBean bean); //기본 6개 
 	public boolean login(MemberBean bean);    

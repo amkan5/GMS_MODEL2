@@ -13,9 +13,10 @@ public class Proxy implements Capable {
 	HttpServletRequest request;
 
 	@Override
-	public void carryout(Object o) {
+	public void carryout(Map<?, ?> param) {
+		System.out.println("carryout 들어가기 2 ");
 		this.pagination = new Pagination();
-		pagination.carryout(o);
+		pagination.carryout(param);
 		//페이지네이션이면 페이지네이션으로 가고
 		//체크박스 쓸꺼면 체크박스로 가고 ㅎㅎ 
 	}

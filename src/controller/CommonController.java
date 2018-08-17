@@ -25,7 +25,7 @@ public class CommonController extends HttpServlet {
 		int i = 0;
 		for(Resources r: Resources.values()) {
 				request.getSession()
-				.setAttribute(r.toString().toLowerCase(), 
+				.setAttribute(r.toString().toLowerCase(), //이게 ctx/img담는 공간 
 						(i==0)?
 						request.getContextPath():
 						request.getContextPath()+"/resources/"+r.toString().toLowerCase()
@@ -42,7 +42,6 @@ public class CommonController extends HttpServlet {
 				+request.getServletPath().split(".d")[0]
 				+Term.MAIN.toString())
 				.forward(request,response);
-		
 		/*request.getRequestDispatcher("/WEB-INF/view/main.jsp")
 		.forward(request, response);*/
 	}

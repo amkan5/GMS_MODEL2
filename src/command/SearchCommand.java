@@ -28,26 +28,34 @@ public class SearchCommand extends Command{
 		System.out.println("1.써치커맨드진입");
 		Map<String, Object> paramMap = new HashMap<>();
 		String pageNumber = request.getParameter("pageNum");
-		Proxy pxy = new Proxy();
-		pxy.carryout((pageNumber==null)
-				? 1:
+		//search를 위한 컬럼/값 넣어주기 
+				if(request.getParameter("searchOption")!=null) {
+					paramMap.put("column", request.getParameter("searchOption").toUpperCase());
+					request.setAttribute("searchOption", request.getParameter("searchOption"));
+					paramMap.put("value", request.getParameter("searchWord"));
+					request.setAttribute("searchWord", request.getParameter("searchWord"));
+				}
+				paramMap.put("pageNum", (pageNumber==null)
+									? 1:
 					Integer.parseInt(request.getParameter("pageNum")));
+		//페이지네이션 for All
+		Proxy pxy = new Proxy();
+		System.out.println("a. carryout들어가기 ");
+		/*pxy.carryout((pageNumber==null)
+				? 1:
+					Integer.parseInt(request.getParameter("pageNum"))); */
+		pxy.carryout(paramMap);			
 		Pagination page=  pxy.getPagination();
-		String[] arr1 = {"domain","beginRow","endRow","value"};
+		String[] arr1 = {"domain","beginRow","endRow"};
 		String[] arr2 = {
 				request.getServletPath()
 				.split(".do")[0].split("/")[1],
 				String.valueOf(page.getBeginRow()), 
 				String.valueOf(page.getEndRow()),
-				request.getParameter("searchWord")
 			};
 		for(int i=0;i<arr1.length;i++){
 				paramMap.put(arr1[i], arr2[i]);
 			}
-		//이걸 어찌 바꿔야할까?
-		if(request.getParameter("searchOption")!=null) {
-			paramMap.put("column", request.getParameter("searchOption").toUpperCase());
-		}
 	System.out.println("2. column " + paramMap.get("column"));
 	System.out.println("3.search word : " + request.getParameter("searchWord"));			
 	System.out.println("4. beginRow :" + paramMap.get("beginRow"));

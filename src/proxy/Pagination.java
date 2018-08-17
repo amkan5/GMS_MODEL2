@@ -22,16 +22,35 @@ public class Pagination implements Capable{
 	 blockCount ,
 	 prevBlock ,
 	 nextBlock;
-	boolean existPrev, existNext;
+	String searchWord,column;
+	boolean existPrev, existNext, existWord;
 	HttpServletRequest request;
 	@Override
-	public void carryout(Object o) {
-		this.rowCount = MemberServiceImpl.getInstance().countMember();
+	public void carryout(Map<?, ?> param) {
+		System.out.println("c. proxy페이지네이션서 로카운트 찍기");
+		//만약 컬럼값이 있으면 컬럼넣어주고 없으면 param에 기본값 풋해줘야해 ㅎg 
+		Map<String, Object> map = new HashMap<>();
+		this.searchWord = null;
+		this.column = null;
+		if(!param.containsKey("column")) {
+			map.put("column", "MEMID");
+			map.put("value", "%");
+			System.out.println("컬럼값이 없습니다 ");
+			this.rowCount = MemberServiceImpl.getInstance().countMember(map);
+			this.existWord = false;
+		}else {
+			System.out.println("칼럼값이 있스무니다 " + param.get("column"));
+			this.rowCount = MemberServiceImpl.getInstance().countMember(param);
+			this.existWord = true;
+			this.searchWord = param.get("value").toString();
+			this.column = param.get("column").toString();
+		}
+		System.out.println("g. 최종 rowcount "+this.rowCount);
 		this.pageSize = 5;
 		this.blockSize = 5;	
 		this.beginPage = 0;
 		this.endPage = 0; 
-		this.pageNum = (int) o; 
+		this.pageNum = (int) param.get("pageNum");
 		this.beginRow = 0; //String.valueOf(4*(pageNum-1)+pageNum);
 		this.endRow= 0; //String.valueOf(pageNum*5);
 		this.pageCount =  (int) Math.ceil(rowCount/(double)pageSize);	//14

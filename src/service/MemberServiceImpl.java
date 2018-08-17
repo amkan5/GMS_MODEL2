@@ -12,7 +12,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	private MemberServiceImpl() {
 		// TODO Auto-generated constructor stub
-	}
+	}	
 	@Override
 	public void add(MemberBean member) {
 		 MemberDAOImpl.getInstance().insert(member);
@@ -28,8 +28,8 @@ public class MemberServiceImpl implements MemberService {
 		return MemberDAOImpl.getInstance().selectSome(param);
 	}
 	@Override
-	public int countMember() {
-		return MemberDAOImpl.getInstance().count();
+	public int countMember(Map<?, ?> param) {
+		return MemberDAOImpl.getInstance().count(param);
 	}
 	@Override
 	public void modify(Map<?, ?> param) {

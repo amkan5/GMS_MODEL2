@@ -22,7 +22,6 @@ public RemoveCommand(HttpServletRequest request) {
 	 			System.out.println("삭제에 들어옴 끄읕");
 	 			MemberServiceImpl.getInstance().remove(
 	 					(MemberBean) request.getSession().getAttribute("user"));
-	 			//비밀번호 재확인한거 split해줘야ㅐㅎ 
 	 			request.getSession().invalidate();
 	 	default:
 			break;

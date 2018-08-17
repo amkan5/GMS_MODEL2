@@ -46,7 +46,7 @@ public class DatabaseFactory {
 			url = DBConstant.CONNECTION_URL;
 			db = new Oracle(driver,url,
 					(String)map.get("username"),
-					(String)map.get("password"));
+					(String)map.get("dbpassword"));
 			System.out.println("데이타베이스팩토리 잘 끝났다?");
 			break;
 		case MARIADB:	
@@ -54,14 +54,14 @@ public class DatabaseFactory {
 			url = DBConstant.CONNECTION_URL;
 			db = new Mariadb(driver,url,
 					(String)map.get("username"),
-					(String)map.get("password"));
+					(String)map.get("dbpassword"));
 			break;	
 		case MYSQL:
 			driver = DBConstant.MYSQL_DRIVER;
 			url = DBConstant.CONNECTION_URL;
 			db = new MySQL(driver,url,
 					(String)map.get("username"),
-					(String)map.get("password"));
+					(String)map.get("dbpassword"));
 			break;
 		case MSSQL:
 			driver = DBConstant.MSSQL_DRIVER;

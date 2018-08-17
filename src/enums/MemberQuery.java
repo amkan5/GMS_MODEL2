@@ -27,11 +27,15 @@ public enum MemberQuery {
 					+" VALUES "
 					+"( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 			break;
-		case COUNT : 
+	/*	case COUNT : 
 			query = "SELECT COUNT(*) AS COUNT FROM MEMBER";
+			break;*/
+		case COUNT :
+			query = "SELECT COUNT(*) AS COUNT FROM MEMBER "
+					+ "WHERE %s LIKE ?";
 			break;
 		case UPDATE : 
-			query = "UPDATE MEMBER SET "
+			query = "UPDATE MEMBER SET " //"UPDATE MEBER SET"
 					+ "%s = ?, "
 					+ "%s = ?, "
 					+ "%s = ? "
@@ -39,8 +43,8 @@ public enum MemberQuery {
 			break;
 		case DELETE : 
 			query = "DELETE FROM MEMBER "
-					+ "WHERE MEMID LIKE '%s' "
-					+ "AND PASSWORD LIKE '%s'";
+					+ "WHERE MEMID LIKE ? "
+					+ "AND PASSWORD LIKE ? ";
 			break;
 		case LIST :
 			query = "SELECT B.* "
@@ -65,8 +69,8 @@ public enum MemberQuery {
 		case RETRIEVE :
 			query = "SELECT "
 					+ ColumnFinder.find(Domain.MEMBER)
-					+ " FROM MEMBER "
-					+ " WHERE USERID "
+					+ " FROM MEMBER " //FROM %s
+					+ " WHERE MEMID "
 					+ " LIKE ? ";
 			break;
 			

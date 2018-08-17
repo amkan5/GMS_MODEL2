@@ -11,6 +11,7 @@ public class LoginQuery extends QueryTamplate {
 	@Override
 	void initialize() {
 		map.put("sql", MemberQuery.LOGIN.toString());	
+		System.out.println("로그인 1 init : "+MemberQuery.LOGIN.toString());
 	}
 
 	@Override
@@ -19,15 +20,14 @@ public class LoginQuery extends QueryTamplate {
 		try {
 			j++;
 			pstmt.setString(j, 
-					"%"+map.get("memId").toString()+"%");
+					map.get("memId").toString());
 			j++;
 			pstmt.setString(j, 
-					"%"+map.get("password").toString()+"%");
+					map.get("password").toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class LoginQuery extends QueryTamplate {
 				mem.setGender(rs.getString("GENDER"));			
 			}
 			o = mem;
-			System.out.println("login object : " + o.toString());
+			//System.out.println("login object : " + o.toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -4,7 +4,15 @@ import lombok.Data;
 
 @Data
 public class MemberBean {
-	protected String memId,name,roll,teamId,age,password,ssn,gender,subject;
+	protected String memId,
+					name,
+					roll,
+					teamId,
+					age,
+					password,
+					ssn,
+					gender,
+					subject;
 
 	@Override
 	public String toString() {

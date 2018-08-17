@@ -22,6 +22,12 @@ FROM
           FROM MEMBER)A)B
     WHERE B.RNUM BETWEEN 1 AND 5;
     
+    CREATE SEQUENCE IMG_SEQ()
+    CREATE TABLE IMAGE(
+    	IMG_SEQ DECIMAL,
+    	IMGNAME VARCHAR2(20),
+    	FKEY 
+    );
     
  -- 이렇게했던거보고 . 페이지 2라고 하면 저게떠야해. 
  -- ㅇ_ㅇ? 첨에 돌렸을때. 

@@ -36,6 +36,10 @@ public class Commander {
 		case REMOVE :
 			cmd = new RemoveCommand(request);
 			break;
+		case FILEUPLOAD:
+			System.out.println("파일업로드 커맨더까지왔나");
+			cmd = new FileCommand(request);
+			break;
 		default:
 			break;
 		}

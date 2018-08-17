@@ -16,6 +16,5 @@ public void execute() {
 	System.out.println("move command page이름 : "+request.getParameter("page"));
 	request.setAttribute("pagename", 
 			request.getParameter("page"));
-	super.execute();
 }
 }

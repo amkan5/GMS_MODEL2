@@ -1,31 +1,4 @@
-/*초기버전 	var router = (function (){
-		var move = function (x){ //function안에는 this가 없다..
-			 console.log('중복 테스트 성공'); 
-			 alert('클릭 테스트 성공!!');  //자바스크립트의 syso
-			"${ctx}/" jsp에서 움직이는애임 
-			location.href = x[0] + '/'
-				 			+x[1]
-			 				+".do?action=" + x[2]
-			 				+"&page=" + x[3]
-		};
-		return { move : move }; //키값과 value
-	}()); //이게 (function(){}()) 싱글 쓰레드. 
-*/
-/* 두번째 버전 var service = (()=>{
-	return {
-		loginValidation : x=>{
-			if(x[0]===''){
-				 alert("Please provide your name!");
-				 return false;
-			}else if(x[1]===''){
-				alert("Please provide your password");
-				 return false;
-			}else{
-				return true;
-			}
-		} //파라미터가 없으니까 (). 근데 x를 주고 안써도 되니까 걍 default로 x를 줘버림
-	};
-})();*/
+
 
 
 
@@ -80,6 +53,35 @@ var member = (()=>{ //파라미터 봉쇄해놨음. 보안걸림.  클로져를 
 					member.setPassword(x.oldPass+"/"+x.newPass);
 					member.setTeamId(x.teamId);
 					member.setRoll(x.roll);
+				},
+				main : x=>{
+					document.getElementById('moveToAdmin') 
+					.addEventListener('click',function(){
+						router.move({context: x,
+							domain : 'admin',
+							action: 'search',
+							page: 'main'})
+					})
+				/*	retrieve에 있는애들
+				 * document.getElementById('myPageMoveToUpdate')
+					.addEventListener('click',function(){
+					alert('넘어간다요');
+					router.move({context:'${ctx}',
+								domain : 'member',
+								action: 'move',
+								page: 'modify'})
+								});
+								
+					document.getElementById('myPageMoveToDelete')
+					.addEventListener('click',function(){
+					alert('넘어간다요');
+					router.move({context:'${ctx}',
+								domain : 'member',
+								action: 'move',
+								page: 'remove'})
+								});*/
+					
+					
 				}
 			}
 })();
@@ -180,7 +182,7 @@ var admin = (()=>{
 					);
 					
 					
-					
+					//마이페이지로 이동 
 					for(var i of document.querySelectorAll('.username')){
 						service.addClass(
 								i,
@@ -189,7 +191,7 @@ var admin = (()=>{
 							i.style.color = 'blue';
 							i.style.cursor = 'pointer';
 							i.addEventListener('click',function(){
-							location.href= x+'/admin.do?action=retrieve&page=memberDetail&userid='
+							location.href= x+'/member.do?action=retrieve&page=retrieve&userid='
 								+this.getAttribute('id');
 						})
 					};
@@ -207,6 +209,7 @@ var admin = (()=>{
 						})
 					};
 					
+					//페이지블락
 					for(var k of document.querySelectorAll('.pageBlocks')){
 						service.addClass(
 								k,
@@ -274,8 +277,8 @@ var admin = (()=>{
 		node.setAttribute('name',x.name);
 		node.setAttribute('value',x.value);
 	}};
-})();*/
-
+})();
+*/
 
 
 /*var member = (()=> {

@@ -41,6 +41,13 @@
 <input type="button" id="updateConformBtn" value="수정확인">
 
 </form>
+<form method="POST" enctype="multipart/form-data" action="${ctx}/member.do?action=fileupload&page=retrieve"> <!-- 폼태그안에 폼태그 안됨 -->
+  파일업로드: <input type="file" name="upfile"><br/>
+  <input type="submit" value="업로드">  
+<!--   <input type="hidden" name="action" value="fileupload" />
+  <input type="hidden" name="page" value="retrieve" /> -->
+</form>
+
 
 <Script>
 var form = document.getElementById('updateForm'); //document의 object로 만든 객체. dom객체
